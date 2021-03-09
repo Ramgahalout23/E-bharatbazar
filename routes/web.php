@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [indexController::class, 'index']);
-Route::get('admin', [AdminController::class, 'login']);
+Route::get('/home', [indexController::class, 'index'])->name('home');
+Auth::routes();
+Route::match(['get','post'],'admin','AdminController@login'); 
+Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard'); 

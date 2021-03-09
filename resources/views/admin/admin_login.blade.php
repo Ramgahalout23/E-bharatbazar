@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>CRM Admin Panel</title>
+        <title>Admin Panel</title>
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="{{asset('admin-assets/dist/img/ico/favicon.png')}}" type="image/x-icon">
@@ -39,7 +39,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="http://thememinister.com/crm/index.html" id="loginForm" novalidate>
+                        <form action="{{url('admin')}}" id="loginForm" method="POST"> 
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="control-label" for="username">Username</label>
                                 <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
