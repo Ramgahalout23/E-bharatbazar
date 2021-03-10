@@ -19,8 +19,8 @@
                      </span>
                      </a>
                      <ul class="treeview-menu">
-                        <li><a href="add-customer.html">Add Products</a></li>
-                        <li><a href="clist.html">View Products</a></li>
+                        <li><a href="{{url('admin/add-product')}}">Add Products</a></li>
+                        <li><a href="#">View Products</a></li>
                      </ul>
                   </li>
 
