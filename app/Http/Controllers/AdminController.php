@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use Illuminate\Http\Request;
+use Session;
 use Illuminate\Support\Facades\Auth;
+
 class AdminController extends Controller
 {
    public function login(Request $req){
@@ -16,8 +20,13 @@ class AdminController extends Controller
      }
          return view('admin/admin_login');
    }
-   
+
    public function dashboard(){
       return view('admin/dashboard');
    }
+
+   public function logout(){
+    Session::flush();
+         return redirect('/admin')->with('flash_message_success', 'logout Suceessfully!');
+         }
 }

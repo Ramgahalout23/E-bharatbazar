@@ -22,5 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [indexController::class, 'index']);
 Route::get('/home', [indexController::class, 'index'])->name('home');
 Auth::routes();
-Route::match(['get','post'],'admin','AdminController@login'); 
-Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard'); 
+Route::match(['get','post'],'admin','AdminController@login');
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard');
+});
+Route::get('logout',[AdminController::class,'logout']);

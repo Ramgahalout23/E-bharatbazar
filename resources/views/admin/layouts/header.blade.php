@@ -28,7 +28,7 @@
          <ul class="nav navbar-nav">
             <!-- Orders -->
             <li class="dropdown messages-menu">
-               <a href="#" class="dropdown-toggle admin-notification" data-toggle="dropdown"> 
+               <a href="#" class="dropdown-toggle admin-notification" data-toggle="dropdown">
                <i class="pe-7s-cart"></i>
                <span class="label label-primary">5</span>
                </a>
@@ -109,7 +109,7 @@
                               <h4>Leo messi</h4>
                               <p>Please oreder 10 pices of Sheos..</p>
                               <span class="badge badge-info badge-massege"><small>6 days ago</small>
-                              </span>   
+                              </span>
                            </a>
                         </li>
                         <li>
@@ -132,7 +132,7 @@
                               <p>Hello i want 4 uefa footballs</p>
                               <span class="badge badge-danger badge-massege">
                               <small>6 days ago</small>
-                              </span>  
+                              </span>
                            </a>
                         </li>
                         <li>
@@ -221,7 +221,7 @@
                         <li>
                            <!-- Task item -->
                            <a href="#" class="border-gray">
-                              <span class="label label-info pull-right">30%</span>   
+                              <span class="label label-info pull-right">30%</span>
                               <h3><i class="fa fa-check-circle"></i> font-family should be change</h3>
                            </a>
                         </li>
@@ -270,7 +270,7 @@
                      <i class="fa fa-user"></i> User Profile</a>
                   </li>
                   <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a></li>
-                  <li><a href="login.html">
+                  <li><a href="{{url('logout')}}">
                      <i class="fa fa-sign-out"></i> Signout</a>
                   </li>
                </ul>
