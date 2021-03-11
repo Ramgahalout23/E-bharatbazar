@@ -26,7 +26,7 @@
                        </div>
                     </div>
                     <div class="panel-body">
-                       <form class="col-sm-6">
+                       <form class="col-sm-6" action="{{'/admin/add-product'}}" method="post" enctype="multipart/form-data"> {{ csrf_field() }}
                           <div class="form-group">
                              <label>Product Name</label>
                              <input type="text" class="form-control" placeholder="Enter Product Name"  name="product_name" id="product_name"required>
@@ -50,11 +50,10 @@
 
                           <div class="form-group">
                             <label>Picture upload</label>
-                            <input type="file" name="picture">
-                            <input type="hidden" name="old_picture">
+                            <input type="file" name="image">
                          </div>
                           <div class="reset-button">
-                             <a href="#" class="btn btn-success">Save</a>
+                         <input type="submit" class="btn btn-success" value=" Add Product">
                           </div>
                        </form>
                     </div>
