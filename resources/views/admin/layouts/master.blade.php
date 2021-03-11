@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>CRM Admin Panel</title>
+      <title>E-bharatbazar Admin Panel</title>
       <meta name="csrf-token" content="{{csrf_token()}}">
       <!-- Favicon and touch icons -->
       <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">

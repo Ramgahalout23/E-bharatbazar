@@ -1,5 +1,5 @@
 <header class="main-header">
-   <a href="index.html" class="logo">
+   <a href="{{url('/admin/dashboard')}}" class="logo">
       <!-- Logo -->
       <span class="logo-mini">
       <img src="{{asset('front_assets/dist/img/mini-logo.png')}}" alt="">
