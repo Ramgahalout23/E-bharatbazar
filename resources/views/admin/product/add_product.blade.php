@@ -38,8 +38,8 @@
                  <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                        <div class="btn-group" id="buttonlist">
-                          <a class="btn btn-add " href="#">
-                          <i class="fa fa-list"></i>  Add Products </a>
+                          <a class="btn btn-add " href="{{url('/admin/view-product')}}">
+                          <i class="fa fa-eye"></i>  View Products </a>
                        </div>
                     </div>
                     <div class="panel-body">

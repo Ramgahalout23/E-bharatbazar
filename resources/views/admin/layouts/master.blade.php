@@ -96,6 +96,10 @@
          =====================================================================-->
       <!-- Dashboard js -->
       <script src="{{asset('admin-assets/dist/js/dashboard.js')}}" type="text/javascript"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+      <script>$(document).ready( function () {
+         $('#table_id').DataTable();
+     } );</script>
       <!-- End Theme label Script
          =====================================================================-->
       <script>
