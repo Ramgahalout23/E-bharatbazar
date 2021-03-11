@@ -32,8 +32,9 @@ class ProductsController extends Controller
                 $product->image = $upload_success;
             }
             $product->save();
+            return redirect('admin/add-product')->with('flash_message_success','Product has been added !');
         }
-        return view('admin.product.add_product');
+        return view('admin.product.add_product')->with('flash_message_error','Something Went Wrong!');;
 
 
 }

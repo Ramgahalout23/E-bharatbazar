@@ -13,6 +13,23 @@
               <small>Add Products</small>
            </div>
         </section>
+                    @if(Session::has('flash_message_error'))
+                <div class="alert alert-sm alert-danger alert-block" role="alert">
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                   </button>
+                   <strong>{!! session('flash_message_error') !!}</strong>
+                </div>
+                @endif
+                
+                @if(Session::has('flash_message_success'))
+                <div class="alert alert-sm alert-success alert-block" role="alert">
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                   </button>
+                   <strong>{!! session('flash_message_success') !!}</strong>
+                </div>
+                @endif
         <!-- Main content -->
         <section class="content">
            <div class="row">
@@ -21,7 +38,7 @@
                  <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                        <div class="btn-group" id="buttonlist">
-                          <a class="btn btn-add " href="clist.html">
+                          <a class="btn btn-add " href="#">
                           <i class="fa fa-list"></i>  Add Products </a>
                        </div>
                     </div>
@@ -45,12 +62,12 @@
                          </div>
                           <div class="form-group">
                              <label>Product Description</label>
-                           <textarea name="product_description" id="product_description" class="form-control"></textarea>
+                           <textarea name="product_description" id="product_description" class="form-control" required></textarea>
                           </div>
 
                           <div class="form-group">
                             <label>Picture upload</label>
-                            <input type="file" name="image">
+                            <input type="file" name="image" required>
                          </div>
                           <div class="reset-button">
                          <input type="submit" class="btn btn-success" value=" Add Product">
