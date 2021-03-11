@@ -34,8 +34,17 @@ class ProductsController extends Controller
             $product->save();
             return redirect('admin/add-product')->with('flash_message_success','Product has been added !');
         }
-        return view('admin.product.add_product')->with('flash_message_error','Something Went Wrong!');;
+        return view('admin.product.add_product');
 
 
 }
+
+
+public function viewProducts()
+{
+
+ return view('admin.product.view_products');
+}
+
+
 }
