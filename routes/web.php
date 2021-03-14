@@ -32,4 +32,4 @@ Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'/admin/delete-product/{id}','ProductsController@deleteProducts');
 
 });
-Route::get('logout',[AdminController::class,'logout']);
+Route::get('logout',[AdminController::class,'logout']); 

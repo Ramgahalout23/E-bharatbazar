@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Facades\Image As Image;
 use App\Products;
 
@@ -31,7 +32,7 @@ class ProductsController extends Controller
                 $product->image = $upload_success;
             }
             $product->save();
-            return redirect('admin/add-product')->with('flash_message_success','Product has been added !');
+            return redirect('admin/view-product')->with('flash_message_success','Product has been added !');
         }
         return view('admin.product.add_product');
 
@@ -78,8 +79,9 @@ public function editProducts(Request $request, $id=null){
 
 }
 
-public function deleteProducts(Request  $request,  $id=null){
+public function deleteProducts($id=null){
     Products::where(['id'=>$id])->delete();
+    Alert::success('Success Title', 'Success Message');
     return redirect()->back()->with('flash_message_error','Product Deleted');
 
 }

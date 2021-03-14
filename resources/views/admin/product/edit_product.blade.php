@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+@section('title','Edit Products')
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->

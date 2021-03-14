@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-   
+
 <!-- Mirrored from thememinister.com/crm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Jun 2019 11:06:57 GMT -->
 <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>E-bharatbazar Admin Panel</title>
+      <title>@yield('title')- EbharatBazar</title>
       <meta name="csrf-token" content="{{csrf_token()}}">
       <!-- Favicon and touch icons -->
       <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
@@ -30,14 +30,14 @@
       <link href="{{asset('admin-assets/themify-icons/themify-icons.css')}}" rel="stylesheet" type="text/css"/>
       <!-- End Global Mandatory Style
          =====================================================================-->
-      <!-- Start page Label Plugins 
+      <!-- Start page Label Plugins
          =====================================================================-->
       <!-- Emojionearea -->
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
       <link href="{{asset('admin-assets/plugins/emojionearea/emojionearea.min.css')}}" rel="stylesheet" type="text/css"/>
       <!-- Monthly css -->
       <link href="{{asset('admin-assets/plugins/monthly/monthly.css')}}" rel="stylesheet" type="text/css"/>
-      <!-- End page Label Plugins 
+      <!-- End page Label Plugins
          =====================================================================-->
       <!-- Start Theme Layout Style
          =====================================================================-->
@@ -50,11 +50,11 @@
    </head>
 
    <body class="hold-transition sidebar-mini">
-      <div id="preloader"> 
+      <div id="preloader">
          <div id="status">
          </div>
       </div>
-      <div class="wrapper">   
+      <div class="wrapper">
          @include('admin.layouts.header')
          @include('admin.layouts.sidebar')
          @yield("content")
@@ -65,7 +65,7 @@
          =====================================================================-->
       <!-- jQuery -->
       <script src="{{asset('admin-assets/plugins/jQuery/jquery-1.12.4.min.js')}}" type="text/javascript"></script>
-      <!-- jquery-ui --> 
+      <!-- jquery-ui -->
       <script src="{{asset('admin-assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js')}}" type="text/javascript"></script>
       <!-- Bootstrap -->
       <script src="{{asset('admin-assets/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
@@ -138,7 +138,7 @@
                  //dataType: 'json'
                  xmlUrl: 'events.xml'
              });
-         
+
          //bar chart
          var ctx = document.getElementById("barChart");
          var myChart = new Chart(ctx, {
@@ -180,7 +180,8 @@
                  time: 5000
              });
          }
-         dash();         
+         dash();
       </script>
+    @include('sweetalert::alert')
    </body>
 </html>
