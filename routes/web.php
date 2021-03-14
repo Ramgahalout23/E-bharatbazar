@@ -28,6 +28,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard');
     Route::match(['get','post'],'/admin/add-product','ProductsController@addProduct');
     Route::match(['get','post'],'/admin/view-product','ProductsController@viewProducts');
+    Route::match(['get','post'],'/admin/edit-product/{id}','ProductsController@editProducts');
+    Route::match(['get','post'],'/admin/delete-product/{id}','ProductsController@deleteProducts');
 
 });
 Route::get('logout',[AdminController::class,'logout']);

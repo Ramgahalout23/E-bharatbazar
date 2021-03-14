@@ -9,8 +9,8 @@
               <i class="fa fa-product-hunt"></i>
            </div>
            <div class="header-title">
-              <h1>Add Product</h1>
-              <small>Add Products</small>
+              <h1>Edit Product</h1>
+              <small>Edit Product</small>
            </div>
         </section>
                     @if(Session::has('flash_message_error'))
@@ -43,34 +43,41 @@
                        </div>
                     </div>
                     <div class="panel-body">
-                       <form class="col-sm-6" action="{{'/admin/add-product'}}" method="post" enctype="multipart/form-data"> {{ csrf_field() }}
+                       <form class="col-sm-6" action="{{'/admin/edit-product/'.$productDetails->id}}" method="post" enctype="multipart/form-data"> {{ csrf_field() }}
                           <div class="form-group">
                              <label>Product Name</label>
-                             <input type="text" class="form-control" placeholder="Enter Product Name"  name="product_name" id="product_name"required>
+                             <input type="text" class="form-control"value="{{$productDetails->name}}" placeholder="Enter Product Name"  name="product_name" id="product_name"required>
                           </div>
                           <div class="form-group">
                              <label>Product Code</label>
-                             <input type="text" class="form-control" placeholder="Enter Product Code" name="product_code" id="product_code"required>
+                             <input type="text" class="form-control" value="{{$productDetails->code}}"placeholder="Enter Product Code" name="product_code" id="product_code"required>
                           </div>
                           <div class="form-group">
                              <label>Product Color</label>
-                             <input type="text" class="form-control" placeholder="Enter Product Color" name="product_color" id="product_colour"required>
+                             <input type="text" class="form-control" value="{{$productDetails->color}}"placeholder="Enter Product Color" name="product_color" id="product_colour"required>
                           </div>
                           <div class="form-group">
                             <label>Product Price</label>
-                            <input type="text" class="form-control" placeholder="EnterProduct Price"name="product_prize" id="product_prize" required>
+                            <input type="text" class="form-control" value="{{$productDetails->price}}"placeholder="EnterProduct Price"name="product_price" id="product_prize" required>
                          </div>
                           <div class="form-group">
                              <label>Product Description</label>
-                           <textarea name="product_description" id="product_description" class="form-control" required></textarea>
+                           <textarea name="product_description" id="product_description" class="form-control"  required>
+                            {{$productDetails->description}}
+                           </textarea>
+
                           </div>
 
                           <div class="form-group">
                             <label>Picture upload</label>
-                            <input type="file" name="image" required>
+                            <input type="file" name="image">
+                            <input type="hidden" name="current_image" value="{{$productDetails->image}}">
+                            @if(!empty($productDetails->image))
+                            <img style="width:100px;margin-top:10px;" src="{{asset($productDetails->image)}}">
+                            @endif
                          </div>
                           <div class="reset-button">
-                         <input type="submit" class="btn btn-success" value=" Add Product">
+                         <input type="submit" class="btn btn-success" value=" Update Product">
                           </div>
                        </form>
                     </div>
