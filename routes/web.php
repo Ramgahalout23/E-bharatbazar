@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
+use App\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::get('/home', [indexController::class, 'index'])->name('home');
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 
+// Category Route
+Route::match(['get','post'],'/admin/add-category','CategoryController@addCategory');
+Route::match(['get','post'],'/admin/view-categories','CategoryController@viewCategory');
+
+
+// Products routes
 Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard');
     Route::match(['get','post'],'/admin/add-product','ProductsController@addProduct');
@@ -32,4 +39,4 @@ Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'/admin/delete-product/{id}','ProductsController@deleteProducts');
 
 });
-Route::get('logout',[AdminController::class,'logout']); 
+Route::get('logout',[AdminController::class,'logout']);
