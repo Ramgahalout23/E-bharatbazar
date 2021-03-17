@@ -99,7 +99,44 @@
       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
       <script>$(document).ready( function () {
          $('#table_id').DataTable();
-     } );</script>
+     } );
+  //Update Product Status
+  $(".ProductStatus").change(function(){
+          var id = $(this).attr('rel');
+          if($(this).prop("checked")==true){
+             $.ajax({
+                headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type : 'post',
+                url : '/admin/update-product-status',
+                data : {status:'1',id:id},
+                success:function(data){
+                   $("#message_success").show();
+                   setTimeout(function() { $("#message_success").fadeOut('slow'); }, 2000);
+                },error:function(){
+                   alert("Error");
+                }
+             });
+
+          }else{
+            $.ajax({
+                headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type : 'post',
+                url : '/admin/update-product-status',
+                data : {status:'0',id:id},
+                success:function(resp){
+                   $("#message_error").show();
+                   setTimeout(function() { $("#message_error").fadeOut('slow'); }, 2000);
+                },error:function(){
+                   alert("Error");
+                }
+             });
+          }
+         });
+     </script>
       <!-- End Theme label Script
          =====================================================================-->
       <script>
@@ -182,6 +219,8 @@
          }
          dash();
       </script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.js"></script>
     @include('sweetalert::alert')
    </body>
 </html>

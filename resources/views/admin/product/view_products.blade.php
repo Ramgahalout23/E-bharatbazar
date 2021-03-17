@@ -30,8 +30,9 @@
                    <strong>{!! session('flash_message_success') !!}</strong>
                 </div>
                 @endif
-        <!-- Main content --
-                <!-- Main content -->
+                <div id="message_success" style="display:none;" class="alert alert-sm alert-success">Status Enabled</div>
+                <div id="message_error" style="display:none;" class="alert alert-sm alert-danger">Status Disabled</div>
+                <!-- Main content -->   
                 <section class="content">
                    <div class="row">
                       <div class="col-sm-12">
@@ -129,7 +130,12 @@
                                            <td>{{$prod->code}}</td>
                                            <td>{{$prod->color}}</td>
                                            <td>{{$prod->price}}</td>
-                                           <td><span class="label-custom label label-default">Active</span></td>
+                                           <td>
+                                            <input type="checkbox" class="ProductStatus btn btn-success" rel="{{$prod->id}}"
+                                            data-toggle="toggle" data-on="Enabled" data-of="Disabled" data-onstyle="success" data-offstyle="danger"
+                                            @if($prod['status']=="1") checked @endif>
+                                            <div id="myElem" style="display:none;" class="alert alert-success">Status Enabled</div>
+                                            </td>
                                            <td>
                                               <a href="{{url('/admin/edit-product/'.$prod->id)}}" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>
                                               <a href="{{url('/admin/delete-product/'.$prod->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>

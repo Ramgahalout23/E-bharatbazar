@@ -117,5 +117,9 @@ public function deleteProducts($id=null){
     return redirect()->back()->with('flash_message_error','Product Deleted');
 
 }
+public function updateStatus(Request $request,$id=null){
+    $data = $request->all();
+    Products::where('id',$data['id'])->update(['status'=>$data['status']]);
 
+}
 }
