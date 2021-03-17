@@ -111,6 +111,7 @@
                                            <th>ID</th>
                                            <th>Image</th>
                                            <th>Product Name</th>
+                                           <th>Category ID</th>
                                            <th>Product Code</th>
                                            <th>Product Color</th>
                                            <th>Price</th>
@@ -124,6 +125,7 @@
                                            <td>{{$prod->id}}</td>
                                            <td><img src="{{ asset($prod->image)}}"alt="User Image" style="width:100px"> </td>
                                            <td>{{$prod->name}}</td>
+                                           <td>{{$prod->category_id}}</td>
                                            <td>{{$prod->code}}</td>
                                            <td>{{$prod->color}}</td>
                                            <td>{{$prod->price}}</td>
