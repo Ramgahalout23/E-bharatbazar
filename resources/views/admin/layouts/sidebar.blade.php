@@ -34,7 +34,13 @@
                         <li><a href="{{url('admin/add-product')}}">Add Products</a></li>
                         <li><a href="{{url('/admin/view-product')}}">View Products</a></li>
                      </ul>
-                  </li>
+                    </li>
+                    <li class="">
+                        <a href="{{ url('/admin/banners') }}"><i class="fa fa-image"></i><span>banner</span>
+                        <span class="pull-right-container">
+                        </span>
+                        </a>
+                     </li>
 
                </ul>
             </div>

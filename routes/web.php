@@ -43,4 +43,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/admin/update-product-status','ProductsController@updateStatus');
 
 });
+
+//Banners Route
+Route::match(['get','post'],'/admin/banners','BannersController@banners');
+Route::match(['get','post'],'/admin/add-banner','BannersController@addBanner');
+
 Route::get('logout',[AdminController::class,'logout']);
