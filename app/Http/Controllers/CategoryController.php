@@ -47,7 +47,7 @@ public function editCategory(Request $request,$id=null ){
 }
 public function deleteCategory($id=null){
     Category::where(['id'=>$id])->delete();
-    Alert::Success('Deleted','Success Message');
+    Alert::Success('Deleted','Category Deleted Successfully !');
     return redirect()->back();
 }
 public function updateStatus(Request $request,$id=null){

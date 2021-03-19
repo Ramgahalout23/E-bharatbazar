@@ -47,5 +47,6 @@ Route::group(['middleware'=>['auth']],function(){
 //Banners Route
 Route::match(['get','post'],'/admin/banners','BannersController@banners');
 Route::match(['get','post'],'/admin/add-banner','BannersController@addBanner');
+Route::match(['get','post'],'/admin/edit-banner/{id}','BannersController@editBanner');
 
 Route::get('logout',[AdminController::class,'logout']);

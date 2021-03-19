@@ -113,7 +113,7 @@ public function editProducts(Request $request, $id=null){
 
 public function deleteProducts($id=null){
     Products::where(['id'=>$id])->delete();
-    Alert::success('Success Title', 'Success Message');
+    Alert::success('Success', 'Product has been deleted');
     return redirect()->back()->with('flash_message_error','Product Deleted');
 
 }
