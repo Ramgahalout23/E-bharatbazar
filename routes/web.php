@@ -28,6 +28,9 @@ Route::match(['get','post'],'admin','AdminController@login');
 // Category Route
 Route::match(['get','post'],'/admin/add-category','CategoryController@addCategory');
 Route::match(['get','post'],'/admin/view-categories','CategoryController@viewCategory');
+Route::match(['get','post'],'/admin/edit-category/{id}','CategoryController@editCategory');
+Route::match(['get','post'],'/admin/delete-category/{id}','CategoryController@deleteCategory');
+Route::post('/admin/update-category-status','CategoryController@updateStatus');
 
 
 // Products routes
