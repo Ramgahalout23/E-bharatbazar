@@ -58,23 +58,25 @@
                                            <th>ID</th>
                                            <th>Name</th>
                                            <th>Sort Order</th>
-                                           <th>image</th>
+                                           <th>Image</th>
                                            <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
                                      <tbody>
+                                        @foreach ($bannerDetails as $BannerDetail)
                                         <tr>
-                                           <td>1</td>
-                                           <td>banner name</td>
-                                           <td>1</td>
-                                           <td>image</td>
+                                           <td>{{ $BannerDetail->id }}</td>
+                                           <td>{{ $BannerDetail->name}}</td>
+                                           <td>{{ $BannerDetail->sort_order}}</td>
+                                           <td><img src="{{ asset($BannerDetail->image)}}"alt="User Image" style="width:100px"></td>
                                            <td>Status</td>
                                            <td>
                                               <a href="#" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>
                                               <a href="#" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>
                                            </td>
                                         </tr>
+                                        @endforeach
                                      </tbody>
                                   </table>
                                </div>

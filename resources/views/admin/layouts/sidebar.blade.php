@@ -36,7 +36,7 @@
                      </ul>
                     </li>
                     <li class="">
-                        <a href="{{ url('/admin/banners') }}"><i class="fa fa-image"></i><span>banner</span>
+                        <a href="{{ url('/admin/banners') }}"><i class="fa fa-image"></i><span>Banners</span>
                         <span class="pull-right-container">
                         </span>
                         </a>

@@ -9,7 +9,8 @@ use App\Banners;
 class BannersController extends Controller
 {
     public function banners(){
-        return view('admin.banner.banners');
+        $bannerDetails = Banners::get();
+        return view('admin.banner.banners')->with(compact('bannerDetails'));
     }
 
     public function addBanner(Request $request){
