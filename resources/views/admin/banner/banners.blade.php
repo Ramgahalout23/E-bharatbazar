@@ -73,7 +73,7 @@
                                            <td>Status</td>
                                            <td>
                                               <a href="{{asset('/admin/edit-banner/'.$BannerDetail->id)}}" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>
-                                              <a href="#" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>
+                                              <a href="{{asset('admin/delete-banner/'.$BannerDetail->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>
                                            </td>
                                         </tr>
                                         @endforeach

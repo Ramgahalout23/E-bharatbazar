@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image As Image;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Banners;
 
 class BannersController extends Controller
@@ -61,6 +62,12 @@ class BannersController extends Controller
         $bannerDetails = Banners::where(['id'=>$id])->first();
 
         return view('admin.banner.edit_banner')->with(compact('bannerDetails'));
+    }
+
+    public function deleteBanner($id=null){
+        Banners::where(['id'=>$id])->delete();
+        Alert::success('Deleted Successfully', 'Success Message');
+        return redirect()->back()->with('flash_message_error','Product Deleted');
     }
 }
 
