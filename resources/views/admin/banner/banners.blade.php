@@ -70,7 +70,12 @@
                                            <td>{{ $BannerDetail->name}}</td>
                                            <td>{{ $BannerDetail->sort_order}}</td>
                                            <td><img src="{{ asset($BannerDetail->image)}}"alt="User Image" style="width:100px"></td>
-                                           <td>Status</td>
+                                           <td>
+                                            <input type="checkbox" class="BannerStatus btn btn-success" rel="{{$BannerDetail->id}}"
+                                            data-toggle="toggle" data-on="Enabled" data-of="Disabled" data-onstyle="success" data-offstyle="danger"
+                                            @if($BannerDetail['status']=="1") checked @endif>
+                                            <div id="myElem" style="display:none;" class="alert alert-success">Status Enabled</div>
+                                            </td>
                                            <td>
                                               <a href="{{asset('/admin/edit-banner/'.$BannerDetail->id)}}" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>
                                               <a href="{{asset('admin/delete-banner/'.$BannerDetail->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>

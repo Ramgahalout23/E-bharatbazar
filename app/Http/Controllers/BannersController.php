@@ -67,7 +67,12 @@ class BannersController extends Controller
     public function deleteBanner($id=null){
         Banners::where(['id'=>$id])->delete();
         Alert::success('Deleted Successfully', 'Success Message');
-        return redirect()->back()->with('flash_message_error','Product Deleted');
+        return redirect()->back()->with('flash_message_error','Banner Deleted');
+    }
+    public function updateStatus(Request $request,$id=null){
+        $data = $request->all();
+        Banners::where('id',$data['id'])->update(['status'=>$data['status']]);
+
     }
 }
 

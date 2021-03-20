@@ -32,7 +32,7 @@
                 @endif
                 <div id="message_success" style="display:none;" class="alert alert-sm alert-success">Status Enabled</div>
                 <div id="message_error" style="display:none;" class="alert alert-sm alert-danger">Status Disabled</div>
-                <!-- Main content -->   
+                <!-- Main content -->
                 <section class="content">
                    <div class="row">
                       <div class="col-sm-12">
