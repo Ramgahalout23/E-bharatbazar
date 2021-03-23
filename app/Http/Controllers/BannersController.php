@@ -28,7 +28,7 @@ class BannersController extends Controller
                 $imageName = rand(11111, 99999) . '.' . $request->file('image')->getClientOriginalExtension();
                 $destination = 'uploads/banners/';
                 $upload_success = $request->file('image')->move($destination, $imageName);
-                Image::make($upload_success)->resize(500,500)->save($upload_success);
+                Image::make($upload_success)->save($upload_success);
                 $banner->image = $upload_success;
             }
             $banner->save();
@@ -46,7 +46,7 @@ class BannersController extends Controller
                 $filename = rand(11111, 99999) . '.' . $request->file('image')->getClientOriginalExtension();
                 $destination = 'uploads/banners/';
                 $upload_success = $request->file('image')->move($destination, $filename);
-                Image::make($upload_success)->resize(500,500)->save($upload_success);
+                Image::make($upload_success)->save($upload_success);
             }
             else if(!empty($data['current_image'])){
                 $upload_success = $data['current_image'];
