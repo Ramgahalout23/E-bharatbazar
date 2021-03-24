@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductsController;
 use App\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [indexController::class, 'index']);
 Route::get('/home', [indexController::class, 'index'])->name('home');
+Route::get('/products/{id}', [ProductsController::class, 'productDetail']);
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 

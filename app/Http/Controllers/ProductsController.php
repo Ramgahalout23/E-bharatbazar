@@ -122,4 +122,11 @@ public function updateStatus(Request $request,$id=null){
     Products::where('id',$data['id'])->update(['status'=>$data['status']]);
 
 }
+public function productDetail($id =null)    {
+
+    $productDetails= Products::where('id',$id)->first();
+    // echo $productDetails;die;
+    return view('Ebharatbazar.product_detail')->with(compact('productDetails'));
+
+}
 }
