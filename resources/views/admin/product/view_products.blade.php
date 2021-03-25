@@ -136,7 +136,8 @@
                                             @if($prod['status']=="1") checked @endif>
                                             <div id="myElem" style="display:none;" class="alert alert-success">Status Enabled</div>
                                             </td>
-                                           <td>
+                                           <td >
+                                              <a href="{{url('/admin/add-attributes/'.$prod->id)}}" class="btn btn-warning btn-sm" ><i class="fa fa-list"></i></button>
                                               <a href="{{url('/admin/edit-product/'.$prod->id)}}" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>
                                               <a href="{{url('/admin/delete-product/'.$prod->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>
                                            </td>

@@ -6,6 +6,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Intervention\Image\Facades\Image As Image;
 use App\Products;
 use App\Category;
+use App\ProductAttributes;
+use App\ProductsAttributes;
 
 class ProductsController extends Controller
 {
@@ -129,4 +131,44 @@ public function productDetail($id =null)    {
     return view('Ebharatbazar.product_detail')->with(compact('productDetails'));
 
 }
+
+public function addAttributes(Request $request,$id=null){
+    $productDetails= Products::with('attributes')->where(['id'=>$id])->first();
+    if($request->isMethod('post')){
+        $data = $request->all();
+        foreach($data['sku'] as $key =>$val){
+            if(!empty($val)){
+                //Prevent duplicate SKU Record
+                $attrCountSKU = ProductAttributes::where('sku',$val)->count();
+                if($attrCountSKU>0){
+                    return redirect('/admin/add-attributes/'.$id)->with('flash_message_error','SKU is already exist please select another sku');
+                }//Prevent duplicate Size Record
+                $attrCountSizes = ProductAttributes::where(['product_id'=>$id,'size'=>$data['size']
+                [$key]])->count();
+                if($attrCountSizes>0){
+                return redirect('/admin/add-attributes/'.$id)->with('flash_message_error',''.$data['size'][$key].'Size is already exist please select another size');
+                }
+                $attribute = new ProductAttributes;
+                $attribute->product_id = $id;
+                $attribute->sku = $val;
+                $attribute->size = $data['size'][$key];
+                $attribute->price = $data['price'][$key];
+                $attribute->stock = $data['stock'][$key];
+                $attribute->save();
+            
+            }
+        }
+        return redirect('/admin/add-attributes/'.$id)->with('flash_message_success','Products attributes added successfully!');
+        // echo"<pre>";print_r($data);die;
+    }
+    return view('admin.product.add_attributes')->with(compact('productDetails'));
+
+    
+}
+public function deleteAttribute($id=null){
+    ProductAttributes::where(['id'=>$id])->delete();
+    return redirect()->back()->with('flash_message_error','Product Attribute is deleted!');
+
+}
+
 }
