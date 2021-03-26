@@ -132,9 +132,10 @@ public function updateStatus(Request $request,$id=null){
 }
 public function productDetail($id =null)    {
 
-    $productDetails= Products::where('id',$id)->first();
+    $productDetails= Products::with('attributes')->where('id',$id)->first();
+    $ProductsAltImages= ProductsImages::where('product_id',$id)->get();
     // echo $productDetails;die;
-    return view('Ebharatbazar.product_detail')->with(compact('productDetails'));
+    return view('Ebharatbazar.product_detail')->with(compact('productDetails','ProductsAltImages','featuredProducts'));
 
 }
 

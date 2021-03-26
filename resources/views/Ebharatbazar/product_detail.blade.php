@@ -24,9 +24,9 @@
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"> <img class="d-block w-100" src="{{asset($productDetails->image)}}" alt="First slide"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="{{asset($productDetails->image)}}" alt="Second slide"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="{{asset($productDetails->image)}}" alt="Third slide"> </div>
+                            @foreach($ProductsAltImages as $key=>$images)
+                        <div class="carousel-item {{$key==0 ? 'active' : ''}}"> <img class="d-block w-100" src="{{asset('/uploads/products/'.$images->image)}}" alt="First slide"> </div>
+                        @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
 						<i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -36,17 +36,13 @@
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 						<span class="sr-only">Next</span>
 					</a>
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-1" data-slide-to="0" class="active">
-                                <img class="d-block w-100 img-fluid" src="{{asset($productDetails->image)}}" alt="" />
-                            </li>
-                            <li data-target="#carousel-example-1" data-slide-to="1">
-                                <img class="d-block w-100 img-fluid" src="{{asset($productDetails->image)}}" alt="" />
-                            </li>
-                            <li data-target="#carousel-example-1" data-slide-to="2">
-                                <img class="d-block w-100 img-fluid" src="{{asset($productDetails->image)}}" alt="" />
-                            </li>
-                        </ol>
+                    <ol class="carousel-indicators">
+                        @foreach($ProductsAltImages as $key=>$images)
+                    <li data-target="#carousel-example-1" data-slide-to="{{$key}}" class="{{$key==0 ? 'active' : ''}}">
+                            <img class="d-block w-100 img-fluid" src="{{asset('/uploads/products/'.$images->image)}}" alt="" />
+                        </li>
+                        @endforeach
+                    </ol>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
@@ -61,14 +57,10 @@
                                         <div class="form-group size-st">
                                             <label class="size-label">Size</label>
                                             <select id="basic" class="selectpicker show-tick form-control">
-									<option value="0">Size</option>
-									<option value="0">S</option>
-									<option value="1">M</option>
-									<option value="1">L</option>
-									<option value="1">XL</option>
-									<option value="1">XXL</option>
-									<option value="1">3XL</option>
-									<option value="1">4XL</option>
+                                    <option value="0">Size</option>
+                                    @foreach ($productDetails->attributes as $size)
+                                    <option value="{{$productDetails->id}}-{{$size->size}}">{{$size->size}}</option>
+                                    @endforeach 
 								</select>
                                         </div>
                                     </li>
