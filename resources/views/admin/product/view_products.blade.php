@@ -117,6 +117,7 @@
                                            <th>Product Color</th>
                                            <th>Price</th>
                                            <th>Status</th>
+                                           <th>Featured Products</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
@@ -137,6 +138,12 @@
                                             <div id="myElem" style="display:none;" class="alert alert-success">Status Enabled</div>
                                             </td>
                                            <td >
+                                                <input type="checkbox" class="FeaturedStatus btn btn-success" rel="{{$prod->id}}"
+                                                data-toggle="toggle" data-on="Enabled" data-of="Disabled" data-onstyle="success" data-offstyle="danger"
+                                                @if($prod['featured_products']=="1") checked @endif>
+                                                <div id="myElem" style="display:none;" class="alert alert-success">Status Enabled</div>
+                                                </td>
+                                               <td >
                                               <a href="{{url('/admin/add-images/'.$prod->id)}}" class="btn btn-warning btn-sm" title="Add Images"><i class="fa fa-image"></i></button>
                                               <a href="{{url('/admin/add-attributes/'.$prod->id)}}" class="btn btn-warning btn-sm" ><i class="fa fa-list"></i></button>
                                               <a href="{{url('/admin/edit-product/'.$prod->id)}}" class="btn btn-add btn-sm" ><i class="fa fa-pencil"></i></button>

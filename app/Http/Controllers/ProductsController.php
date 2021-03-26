@@ -223,4 +223,9 @@ if (file_exists($image_path.$productImage->image))
    return redirect()->back()->with('flash_message_success','Products Attributes Updated!!!');
   
 }
+public function updateFeatured(Request $request,$id=null){
+    $data = $request->all();
+    Products::where('id',$data['id'])->update(['featured_products'=>$data['status']]);
+
+}
 }
