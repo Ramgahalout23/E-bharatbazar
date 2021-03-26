@@ -39,7 +39,7 @@
              <div class="panel panel-bd lobidrag">
                 <div class="panel-heading">
                    <div class="btn-group" id="buttonlist"> 
-                      <a class="btn btn-add " href="{{url('admin/view-products')}}"> 
+                      <a class="btn btn-add " href="{{url('admin/view-product')}}"> 
                       <i class="fa fa-eye"></i>  View Products </a>  
                    </div>
                 </div>
@@ -78,7 +78,7 @@
                <div class="panel-heading">
                   <div class="btn-group" id="buttonexport">
                      <a href="#">
-                        <h4>View Attriutes</h4>
+                        <h4>View Attriutes Images</h4>
                      </a>
                   </div>
                </div>
@@ -86,7 +86,7 @@
                <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                   <div class="btn-group">
                      <div class="buttonexport" id="buttonlist"> 
-                     <a class="btn btn-add" href="{{url('admin/add-product')}}"> <i class="fa fa-plus"></i> Add Product
+                     <a class="btn btn-add" href="{{url('admin/add-images/'.$productDetails->id)}}"> <i class="fa fa-plus"></i> Add Images
                         </a>  
                      </div>
                      

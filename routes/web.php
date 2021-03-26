@@ -51,6 +51,7 @@ Route::match(['get','post'],'/admin/add-attributes/{id}','ProductsController@add
 Route::match(['get','post'],'/admin/delete-attributes/{id}','ProductsController@deleteAttribute');
 Route::match(['get','post'],'/admin/edit-attributes/{id}','ProductsController@editAttribute');
 Route::match(['get','post'],'/admin/add-images/{id}','ProductsController@addImages');
+Route::match(['get','post'],'/admin/delete-alt-image/{id}','ProductsController@deleteAltImage');
 
 //Banners Route
 Route::match(['get','post'],'/admin/banners','BannersController@banners');

@@ -115,6 +115,11 @@ public function editProducts(Request $request, $id=null){
 }
 
 public function deleteProducts($id=null){
+   $product_image =Products::where(['id'=>$id])->first();
+if (file_exists($product_image->image))
+{
+    unlink($product_image->image);
+}
     Products::where(['id'=>$id])->delete();
     Alert::success('Success', 'Product has been deleted');
     return redirect()->back()->with('flash_message_error','Product Deleted');
@@ -205,4 +210,16 @@ public function addImages(Request $request,$id=null){
     return view('admin.product.add_images')->with(compact('productDetails','productImages'));
 }
 
+public function deleteAltImage($id=null){
+$productImage =ProductsImages::where(['id'=>$id])->first();
+$image_path= 'uploads/products/';
+if (file_exists($image_path.$productImage->image))
+{
+    unlink($image_path.$productImage->image);
+}
+   ProductsImages::where(['id'=>$id])->delete();
+   Alert::success('Deleted','Success Message');
+   return redirect()->back()->with('flash_message_success','Products Attributes Updated!!!');
+  
+}
 }

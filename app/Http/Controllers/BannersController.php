@@ -65,6 +65,11 @@ class BannersController extends Controller
     }
 
     public function deleteBanner($id=null){
+$product_banners =Banners::where(['id'=>$id])->first();
+ if (file_exists($product_banners->image))
+{
+    unlink($product_banners->image);
+}
         Banners::where(['id'=>$id])->delete();
         Alert::success('Deleted Successfully', 'Success Message');
         return redirect()->back()->with('flash_message_error','Banner Deleted');
