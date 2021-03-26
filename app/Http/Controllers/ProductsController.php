@@ -7,6 +7,7 @@ use Intervention\Image\Facades\Image As Image;
 use App\Products;
 use App\Category;
 use App\ProductAttributes;
+use App\ProductsImages;
 use App\ProductsAttributes;
 
 class ProductsController extends Controller
@@ -179,6 +180,29 @@ public function editAttribute(Request $request,$id=null ){
       }
       return redirect()->back()->with('flash_message_success','Products Attributes Updated!!!');
     }
+}
+
+public function addImages(Request $request,$id=null){
+    $productDetails = Products::where(['id'=>$id])->first();
+    if($request->isMethod('post')){
+        $data = $request->all();
+        if($request->hasfile('image')){
+            $files = $request->file('image');
+            foreach($files as $file){
+                $image = new ProductsImages;
+                $extension = $file->getClientOriginalExtension();
+                $filename = rand(111,9999).'.'.$extension;
+                $image_path = 'uploads/products/'.$filename;
+                Image::make($file)->save($image_path);
+                $image->image = $filename;
+                $image->product_id = $data['product_id'];
+                $image->save();
+            }
+        }
+        return redirect('/admin/add-images/'.$id)->with('flash_message_success','Image has been updated');
+    }
+    $productImages = ProductsImages::where(['product_id'=>$id])->get();
+    return view('admin.product.add_images')->with(compact('productDetails','productImages'));
 }
 
 }

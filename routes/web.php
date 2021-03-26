@@ -50,6 +50,7 @@ Route::group(['middleware'=>['auth']],function(){
 Route::match(['get','post'],'/admin/add-attributes/{id}','ProductsController@addAttributes');
 Route::match(['get','post'],'/admin/delete-attributes/{id}','ProductsController@deleteAttribute');
 Route::match(['get','post'],'/admin/edit-attributes/{id}','ProductsController@editAttribute');
+Route::match(['get','post'],'/admin/add-images/{id}','ProductsController@addImages');
 
 //Banners Route
 Route::match(['get','post'],'/admin/banners','BannersController@banners');
