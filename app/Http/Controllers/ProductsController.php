@@ -171,4 +171,14 @@ public function deleteAttribute($id=null){
 
 }
 
+public function editAttribute(Request $request,$id=null ){
+    if($request->isMethod('post')){
+      $data= $request->all();
+      foreach($data['attr'] as $key=>$attr){
+        ProductAttributes::where(['id'=>$data['attr'][$key]])->update(['sku'=>$data['sku'][$key],'size'=>$data['size'][$key],'price'=>$data['price'][$key],'stock'=>$data['stock'][$key]]);
+      }
+      return redirect()->back()->with('flash_message_success','Products Attributes Updated!!!');
+    }
+}
+
 }

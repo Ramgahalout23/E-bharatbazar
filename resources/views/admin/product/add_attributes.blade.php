@@ -149,34 +149,38 @@
                      <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                      <div class="table-responsive">
                         <table id="table_id" class="table table-bordered table-striped table-hover">
-                           <thead>
-                              <tr class="info">
-                                 <th>Category ID</th>
-                                 <th>Product ID</th>
-                                 <th>SKU</th>
-                                 <th>Size</th>
-                                 <th>Price</th>
-                                 <th>Stock</th>
-                                 <th>Action</th>
-                              </tr>
-                           </thead>
+                           <form enctype="multipart/form-data" action="{{url('/admin/edit-attributes/'.$productDetails->id)}}" method="post"> {{csrf_field()}}
+                              <thead>
+                                 <tr class="info">
+                                    <th>Category ID</th>
+                                    <th>SKU</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Action</th>
+                                 </tr>
+                              </thead>
                            <tbody>
-                              @foreach ($productDetails['attributes'] as $attribute )
-                                 
-                              <tr>
-                                 <td>{{$attribute->id}}</td>
-                                 <td>{{$attribute->product_id}}</td>
-                                 <td>{{$attribute->size}}</td>
-                                 <td>{{$attribute->sku}}</td>
-                                 <td>{{$attribute->price}}</td>
-                                 <td>{{$attribute->stock}}</td>
-                                 <td >
-                                    <a href="{{url('/admin/delete-attributes/'.$attribute->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button>
-                                 </td>
-                              </tr>
+                              @foreach($productDetails['attributes'] as $attribute)
+                             <tr>
+                             <td style="display:none;"><input type="hidden" name="attr[]" value="{{$attribute->id}}">{{$attribute->id}}</td>
+                             <td>{{$attribute->id}}</td>
+  
+                             <td><input type="text" name="sku[]" value="{{$attribute->sku}}" style="text-align:center;width:95px;"> </td>
+                                <td><input type="text" name="size[]" value="{{$attribute->size}}" style="text-align:center; width:95px;"> </td>
+                                <td><input type="text" name="price[]" value="{{$attribute->price}}" style="text-align:center;width:95px;"> </td>
+                                <td><input type="text" name="stock[]" value="{{$attribute->stock}}" style="text-align:center;width:95px;"> </td>
+                                <td class="center">
+                                   <div class="btn-group">
+                                         <input type="submit" value="update" class="btn btn-success" style="height:30px;padding-top:4px;">
+                                         <a href="{{url('/admin/delete-attributes/'.$attribute->id)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> </a>
+                                   </div>
+                                </td>
+                             </tr>
                               @endforeach
-                           </tbody>
+                          </tbody>
                         </table>
+                     </form>
                      </div>
                   </div>
                </div>
