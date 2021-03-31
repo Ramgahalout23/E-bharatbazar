@@ -18,7 +18,7 @@ class CategoryController extends Controller
             $category->url = $data['category_url'];
             $category->description = $data['category_description'];
             $category->save();
-            return redirect('admin/view-categories')->with('flash_message_success','Product has been added !');
+            return redirect('admin/view-categories')->with('flash_message_success','Category has been added !');
         }
         $levels = Category::where(['parent_id'=>0])->get();
                 // echo "<pre>";print_r($levels);die;
