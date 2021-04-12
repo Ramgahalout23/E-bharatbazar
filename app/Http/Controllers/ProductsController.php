@@ -134,6 +134,8 @@ public function productDetail($id =null)    {
 
     $productDetails= Products::with('attributes')->where('id',$id)->first();
     $ProductsAltImages= ProductsImages::where('product_id',$id)->get();
+    $featuredProducts= Products::where(['featured_products'=>1])->get();
+// @dd($featuredProducts);
     // echo $productDetails;die;
     return view('Ebharatbazar.product_detail')->with(compact('productDetails','ProductsAltImages','featuredProducts'));
 
