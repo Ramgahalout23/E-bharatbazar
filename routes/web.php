@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [indexController::class, 'index']);
 Route::get('/home', [indexController::class, 'index'])->name('home');
 Route::get('/products/{id}', [ProductsController::class, 'productDetail']);
+Route::get('/productscategories/{category_id}', [IndexController::class, 'categories'
+]);
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 
