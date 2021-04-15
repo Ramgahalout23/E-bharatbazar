@@ -156,8 +156,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                    <ul class="pagination">
+ {!! $products->render(); !!}
+</ul>
                 </div>
             </div>
         </div>

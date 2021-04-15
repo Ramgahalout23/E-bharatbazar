@@ -28,7 +28,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href= {{ asset('front_assets/css/custom.css') }}>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css" integrity="sha512-uHuCigcmv3ByTqBQQEwngXWk7E/NaPYP+CFglpkXPnRQbSubJmEENgh+itRDYbWV0fUZmUz7fD/+JDdeQFD5+A==" crossorigin="anonymous" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -47,6 +47,10 @@
     <script src= {{ asset('front_assets/js/jquery-3.2.1.min.js') }}></script>
     <script src={{ asset('front_assets/js/popper.min.js') }}></script>
     <script src={{ asset('front_assets/js/bootstrap.min.js') }}></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.5.1/jquery.nicescroll.min.js"></script>
+    <script type='text/javascript'  src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js' ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
     <script src= {{ asset('front_assets/js/jquery.superslides.min.js')}}></script>
     <script src= {{ asset('front_assets/js/bootstrap-select.js')}}></script>
