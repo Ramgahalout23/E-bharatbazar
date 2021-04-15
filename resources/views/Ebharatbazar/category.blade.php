@@ -6,7 +6,7 @@
     <div class="shop-box-inner">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                     <div class="product-categori">
                         <div class="search-product">
                             <form action="#">
@@ -21,86 +21,17 @@
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
                                 @foreach($categories as $cat)
                                 <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="{{url('/productscategories/'.$cat->id) }}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">{{$cat->name}}  <small class="text-muted">(100)</small>
+                                    <a class="list-group-item list-group-item-action" href="#{{$cat->id}}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">{{$cat->name}} <small class="text-muted"></small>
 								</a>
-                                    <div class="collapse show" id="{{$cat->id }}" data-parent="#list-group-men">
+                                    <div class="collapse" id="{{$cat->id}}" data-parent="#list-group-men">
                                         <div class="list-group">
                                             @foreach($cat->categories as $key=>$subcat)
-                                            <a href="{{ url('/productscategories/'.$subcat->id) }}" class="list-group-item list-group-item-action active">{{ $subcat->name }} <small class="text-muted">(50)</small></a>
-                                            @endforeach
+                                        <a href="{{url('/productscategories/'.$subcat->id)}}" class="list-group-item list-group-item-action">{{$subcat->name}}</a>
+                                           @endforeach
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
-                            </div>
-                        </div>
-                        <div class="filter-brand-left">
-                            <div class="title-left">
-                                <h3>Brand</h3>
-                            </div>
-                            <div class="brand-box">
-                                <ul>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios1" value="Yes" type="radio">
-                                            <label for="Radios1"> Supreme </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios2" value="No" type="radio">
-                                            <label for="Radios2"> A Bathing Ape </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios3" value="declater" type="radio">
-                                            <label for="Radios3"> The Hundreds </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios4" value="declater" type="radio">
-                                            <label for="Radios4"> Alife </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios5" value="declater" type="radio">
-                                            <label for="Radios5"> Neighborhood </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios6" value="declater" type="radio">
-                                            <label for="Radios6"> CLOT </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios7" value="declater" type="radio">
-                                            <label for="Radios7"> Acapulco Gold </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios8" value="declater" type="radio">
-                                            <label for="Radios8"> UNDFTD </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios9" value="declater" type="radio">
-                                            <label for="Radios9"> Mighty Healthy </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios10" value="declater" type="radio">
-                                            <label for="Radios10"> Fiberops </label>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -173,7 +104,7 @@
                                                         <div class="type-lb">
                                                             <p class="new">New</p>
                                                         </div>
-                                                        <img src="{{$product->image }}" class="img-fluid" alt="Image">
+                                                        <img src="{{asset($product->image)}}" class="img-fluid" alt="Image">
                                                         <div class="mask-icon">
                                                             <ul>
                                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
