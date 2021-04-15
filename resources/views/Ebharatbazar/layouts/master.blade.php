@@ -59,6 +59,30 @@
     <script src= {{ asset('front_assets/js/form-validator.min.js')}}></script>
     <script src= {{ asset('front_assets/js/contact-form-script.js')}}></script>
     <script src= {{ asset('front_assets/js/custom.js')}}></script>
+    <script>
+      $(document).ready(function(){
+      $("#selSize").change(function(){
+    //   alert("test");
+       var idSize = $(this).val();
+       if(idSize==""){
+           return false;
+       }
+       $.ajax({
+           type : 'get',
+           url : '/get-product-price',
+           data : {idSize:idSize},
+           success:function(resp){
+            //    alert(resp);
+            var arr= resp.split('#');
+            $("#getPrice").html("Product Price : RS "+arr[0]);
+            $('#price').val(arr[0]);
+           },error:function(){
+               alert("Error");
+           }
+       });
+      });
+    });
+    </script>
 </body>
 
 </html>

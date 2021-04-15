@@ -230,4 +230,11 @@ public function updateFeatured(Request $request,$id=null){
     Products::where('id',$data['id'])->update(['featured_products'=>$data['status']]);
 
 }
+public function getprice(Request $request){
+    $data = $request->all();
+   //  echo "<pre>";print_r($data);die;
+   $proArr = explode("-",$data['idSize']);
+   $proAttr = ProductAttributes::where(['product_id'=>$proArr[0],'size'=>$proArr[1]])->first();
+   echo $proAttr->price;
+}
 }

@@ -47,8 +47,8 @@
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
-                        <h2>{{($productDetails->name)}}</h2>
-                        <h5>Rs. {{($productDetails->price)}}</h5>
+                        <h2>Product Name :{{($productDetails->name)}}</h2>
+                        <h5 id="getPrice">Product Price:{{($productDetails->price)}}</h5>
                             <p>
                                 <h4>Short Description:</h4>
                                 <p> {{($productDetails->description)}}</p>
@@ -56,7 +56,7 @@
                                     <li>
                                         <div class="form-group size-st">
                                             <label class="size-label">Size</label>
-                                            <select id="basic" class="selectpicker show-tick form-control">
+                                            <select id="selSize" class="selectpicker show-tick form-control">
                                     <option value="0">Size</option>
                                     @foreach ($productDetails->attributes as $size)
                                     <option value="{{$productDetails->id}}-{{$size->size}}">{{$size->size}}</option>

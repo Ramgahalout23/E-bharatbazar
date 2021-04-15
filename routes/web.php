@@ -26,6 +26,7 @@ Route::get('/home', [indexController::class, 'index'])->name('home');
 Route::get('/products/{id}', [ProductsController::class, 'productDetail']);
 Route::get('/productscategories/{category_id}', [IndexController::class, 'categories'
 ]);
+Route::get('/get-product-price','ProductsController@getprice');
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 
