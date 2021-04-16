@@ -9,7 +9,9 @@ use App\Category;
 use App\ProductAttributes;
 use App\ProductsImages;
 use App\ProductsAttributes;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 class ProductsController extends Controller
 {
     public function addProduct(Request $request){
@@ -236,5 +238,27 @@ public function getprice(Request $request){
    $proArr = explode("-",$data['idSize']);
    $proAttr = ProductAttributes::where(['product_id'=>$proArr[0],'size'=>$proArr[1]])->first();
    echo $proAttr->price;
+}
+public function AddtoCart(Request $request){
+    $data = $request->all();
+    // echo"<pre>";print_r($data);die;
+
+    if(empty($data['user_email'])){
+        $data['user_email']=' ';
+    }
+    if(empty($data['session_id'])){
+        $data['session_id']=' ';
+    }
+    $sizeArr = explode('-',$data['size']);
+    // $session_id = Session::get('session_id');
+    //     if(empty($session_id)){
+    //     $session_id = Str::random(40);
+    //     Session::put('session_id',$session_id);
+    //     }
+    DB::table('cart')->insert(['product_id'=>$data['product_id']
+    ,'product_name'=>$data['product_name'],'product_color'=>$data['color']
+    ,'product_code'=>$data['product_code'],'product_color'=>$data['color'],'price'=>$data['price'],
+    'size'=>$sizeArr[1],'quantity'=>$data['quantity'],'user_email'=>$data['user_email'],
+    'session_id'=>$data['session_id']]);
 }
 }
