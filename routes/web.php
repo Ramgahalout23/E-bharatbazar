@@ -30,6 +30,9 @@ Route::get('/get-product-price','ProductsController@getprice');
 // Routes for add to Cart
 Route::match(['get','post'],'/addtoCart','ProductsController@addtoCart');
 Route::match(['get','post'],'/Cart','ProductsController@Cart');
+Route::match(['get','post'],'/cart/delete-product/{id}','ProductsController@deleteCart');
+//Route For update Quantity
+Route::get('/cart/update-quantity/{id}/{quantity}','ProductsController@updateCartQuantity');
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 

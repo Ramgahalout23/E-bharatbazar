@@ -258,17 +258,33 @@ public function AddtoCart(Request $request){
         $session_id = Str::random(40);
         Session::put('session_id',$session_id);
         }
+        $countProducts = DB::table('cart')->where(['product_id'=>$data['product_id'],'product_color'=>$data['color'],'price'=>$data['price'],
+        'size'=>$sizeArr[1],'session_id'=>$session_id])->count();
+        if($countProducts>0){
+            return redirect()->back()->with('flash_message_error','Product already exists in  your cart');
+        }else{
     DB::table('cart')->insert(['product_id'=>$data['product_id']
     ,'product_name'=>$data['product_name'],'product_image'=>$data['image'],'product_color'=>$data['color']
     ,'product_code'=>$data['product_code'],'product_color'=>$data['color'],'price'=>$data['price'],
     'size'=>$sizeArr[1],'quantity'=>$data['quantity'],'user_email'=>$data['user_email'],
     'session_id'=>$session_id]);
     return redirect('/Cart')->with('flash_message_success','Product has been added in cart');
-}
+}}
 public function Cart(Request $request){
         $session_id = Session::get('session_id');
         $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
     // echo "<pre>";print_r($userCart);die;
+    
     return view('Ebharatbazar.products.cart')->with(compact('userCart'));
+}
+public function deleteCart($id=null){
+    DB::table('cart')->where('id',$id)->delete();
+    Alert::success('Deleted','Success Message');
+        return redirect('/Cart')->with('flash_message_error','Product has been deleted!');
+}
+
+public function updateCartQuantity($id=null,$quantity=null){
+    DB::table('cart')->where('id',$id)->increment('quantity',$quantity);
+    return redirect('/Cart')->with('flash_message_success','Product Quantity has been updated Successfully');
 }
 }

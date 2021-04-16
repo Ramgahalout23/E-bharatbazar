@@ -45,7 +45,7 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
+                            <li><a href="{{url('/Cart')}}"><i class="fa fa-cart-plus"></i> Cart</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> &nbsp;Login</a></li>
                         </ul>
                     </div>
@@ -151,7 +151,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
+                        <li class="side-menu"><a href="{{url('/cartDataHeader')}}">
 						<i class="fa fa-shopping-bag"></i>
                             <span class="badge">3</span>
 					</a></li>
@@ -180,7 +180,7 @@
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
                         <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <a href="{{url('/Cart')}}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
                         </li>
                     </ul>
