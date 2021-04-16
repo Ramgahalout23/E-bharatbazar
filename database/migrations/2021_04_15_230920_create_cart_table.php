@@ -23,7 +23,7 @@ class CreateCartTable extends Migration
             $table->string('price')->length(255);
             $table->integer('quantity')->length(11);
             $table->string('user_email')->length(11);
-            $table->string('session_id')->length(11);
+            $table->string('session_id')->length(255);
             $table->timestamps();
         });
     }

@@ -29,6 +29,7 @@ Route::get('/productscategories/{category_id}', [IndexController::class, 'catego
 Route::get('/get-product-price','ProductsController@getprice');
 // Routes for add to Cart
 Route::match(['get','post'],'/addtoCart','ProductsController@addtoCart');
+Route::match(['get','post'],'/Cart','ProductsController@Cart');
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 
