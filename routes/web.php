@@ -69,5 +69,6 @@ Route::match(['get','post'],'/admin/add-banner','BannersController@addBanner');
 Route::match(['get','post'],'/admin/edit-banner/{id}','BannersController@editBanner');
 Route::match(['get','post'],'/admin/delete-banner/{id}','BannersController@deleteBanner');
 Route::post('/admin/update-banner-status','BannersController@updateStatus');
-
+// Coupons Routes
+Route::match(['get','post'],'/admin/add-coupon','CouponsController@addCoupon');
 Route::get('logout',[AdminController::class,'logout']);
