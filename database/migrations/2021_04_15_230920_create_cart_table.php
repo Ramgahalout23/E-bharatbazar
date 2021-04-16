@@ -16,7 +16,8 @@ class CreateCartTable extends Migration
         Schema::create('cart', function (Blueprint $table) {
             $table->increments('id')->length(10);
             $table->string('product_id')->length(11);
-            $table->string('product_name')->length(11);
+            $table->string('product_name')->length(50);
+            $table->string('product_image')->length(50);
             $table->string('product_code')->length(112);
             $table->string('product_color')->length(255);
             $table->string('size')->length(255);

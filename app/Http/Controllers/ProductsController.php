@@ -250,24 +250,19 @@ public function AddtoCart(Request $request){
     //     $data['session_id']=' ';
     // }
     $sizeArr = explode('-',$data['size']);
+    if(empty($sizeArr)){
+        $data['size']=' ';
+    }
     $session_id = Session::get('session_id');
         if(empty($session_id)){
         $session_id = Str::random(40);
         Session::put('session_id',$session_id);
         }
-        // count product
-        $countProducts = DB::table('cart')->where(['product_id'=>$data['product_id'],'product_color'=>$data['color'],'price'=>$data['price'],
-        'size'=>$sizeArr[1],'session_id'=>$session_id])->count();
-        if($countProducts>0){
-            return redirect()->back()->with('flash_message_error','Product already exists in cart');
-        }else{
-
     DB::table('cart')->insert(['product_id'=>$data['product_id']
-    ,'product_name'=>$data['product_name'],'product_color'=>$data['color']
+    ,'product_name'=>$data['product_name'],'product_image'=>$data['image'],'product_color'=>$data['color']
     ,'product_code'=>$data['product_code'],'product_color'=>$data['color'],'price'=>$data['price'],
     'size'=>$sizeArr[1],'quantity'=>$data['quantity'],'user_email'=>$data['user_email'],
     'session_id'=>$session_id]);
-        }
     return redirect('/Cart')->with('flash_message_success','Product has been added in cart');
 }
 public function Cart(Request $request){

@@ -41,7 +41,7 @@
                                 <tr>
                                     <td class="thumbnail-img">
                                         <a href="#">
-									<img class="img-fluid" src="#" alt="" />
+									<img class="img-fluid" src="{{ $cart->product_image }}" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
