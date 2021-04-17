@@ -72,7 +72,7 @@
 <input type="hidden" id="price" value="{{ $productDetails->price}}" name="price">
                     <div class="single-product-details">
                         <h2>Product Name :{{($productDetails->name)}}</h2>
-                        <h5 id="getPrice">Product Price:{{($productDetails->price)}}</h5>
+                        <h5 id="getPrice">Product Price: {{($productDetails->price)}}</h5>
                             <p>
                                 <h4>Short Description:</h4>
                                 <p> {{($productDetails->description)}}</p>

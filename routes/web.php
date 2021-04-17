@@ -71,4 +71,8 @@ Route::match(['get','post'],'/admin/delete-banner/{id}','BannersController@delet
 Route::post('/admin/update-banner-status','BannersController@updateStatus');
 // Coupons Routes
 Route::match(['get','post'],'/admin/add-coupon','CouponsController@addCoupon');
+Route::match(['get','post'],'/admin/view-coupons','CouponsController@viewCoupon');
+Route::match(['get','post'],'/admin/edit-coupon/{id}','CouponsController@editCoupon');
+Route::get('/admin/delete-coupon/{id}','CouponsController@deleteCoupon');
+Route::post('/admin/update-coupon-status','CouponsController@updateStatus');
 Route::get('logout',[AdminController::class,'logout']);

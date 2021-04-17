@@ -67,6 +67,16 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <!-- jquery-ui -->
       <script src="{{asset('admin-assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js')}}" type="text/javascript"></script>
+      <script>
+  $( function() {
+    $( "#datepicker" ).datepicker(
+       {
+          minDate:0,
+          dateFormat:'yy-mm-dd'
+       }
+    );
+  } );
+  </script>
       <!-- Bootstrap -->
       <script src="{{asset('admin-assets/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
       <!-- lobipanel -->
@@ -247,6 +257,42 @@ $(".FeaturedStatus").change(function(){
              });
           }
          });
+           //Update Coupons Status
+           $(".CouponStatus").change(function(){
+            var id = $(this).attr('rel');
+            if($(this).prop("checked")==true){
+               $.ajax({
+                  headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  type : 'post',
+                  url : '/admin/update-coupon-status',
+                  data : {status:'1',id:id},
+                  success:function(data){
+                     $("#message_success").show();
+                     setTimeout(function() { $("#message_success").fadeOut('slow'); }, 2000);
+                  },error:function(){
+                     alert("Error");
+                  }
+               });
+  
+            }else{
+              $.ajax({
+                  headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  type : 'post',
+                  url : '/admin/update-coupon-status',
+                  data : {status:'0',id:id},
+                  success:function(resp){
+                     $("#message_error").show();
+                     setTimeout(function() { $("#message_error").fadeOut('slow'); }, 2000);
+                  },error:function(){
+                     alert("Error");
+                  }
+               });
+            }
+           });
           //add remove field dynamically
 
           $(document).ready(function(){

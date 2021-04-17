@@ -39,19 +39,13 @@
                  <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                        <div class="btn-group" id="buttonlist">
-                          <a class="btn btn-add " href="{{url('/admin/view-Coupon')}}">
+                          <a class="btn btn-add " href="{{url('/admin/view-coupons')}}">
                           <i class="fa fa-eye"></i>  View Coupon </a>
                        </div>
                     </div>
                     <div class="panel-body">
-                       <form class="col-sm-6" action="{{'/admin/add-Coupon'}}" method="post" enctype="multipart/form-data" name="add_coupon"id="add_coupon"> {{ csrf_field() }}
-                        <div class="form-group">
-                            <label>Amount Type</label>
-                            <select name="amount_type" id="amount_type" class="form-control" required>
-                            <option value="Percentage" >Percentage</option>
-                            <option value="fixed" >Fixed</option>
-                            </select>
-                         </div>
+                       <form class="col-sm-6" action="{{'/admin/add-coupon'}}" method="post" enctype="multipart/form-data" name="add_coupon"id="add_coupon"> {{ csrf_field() }}
+                      
                           <div class="form-group">
                              <label>Coupon Code</label>
                              <input type="text" class="form-control" placeholder="Enter Coupon Code"  name="coupon_code" id="coupon_code"required>
@@ -61,8 +55,15 @@
                              <input type="text" class="form-control" placeholder="Enter Coupon Amount" name="coupon_amount" id="coupon_amount"required>
                           </div>
                           <div class="form-group">
+                            <label>Amount Type</label>
+                            <select name="amount_type" id="amount_type" class="form-control" required>
+                            <option value="Percentage" >Percentage</option>
+                            <option value="fixed" >Fixed</option>
+                            </select>
+                         </div>
+                          <div class="form-group">
                              <label>Expiry Date</label>
-                             <input type="text" class="form-control" placeholder="Enter Expiry Date" name="expiry_date" id="expiry_date"required>
+                             <input type="text" class="form-control" placeholder="Enter Expiry Date" name="expiry_date" id="datepicker"required>
                           </div>
                           <div class="reset-button">
                          <input type="submit" class="btn btn-success" value=" Add Coupon">

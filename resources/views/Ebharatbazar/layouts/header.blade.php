@@ -3,9 +3,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
+                    <div class="text-slid-box" style="height:32px">
                         <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
+                            <ul class="offer-box" style="height:32px">
                                 <li>
                                     <i class="fab fa-opencart"></i> Off 10%! Shop Now Man
                                 </li>
