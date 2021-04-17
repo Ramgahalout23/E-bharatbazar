@@ -33,6 +33,9 @@ Route::match(['get','post'],'/Cart','ProductsController@Cart');
 Route::match(['get','post'],'/cart/delete-product/{id}','ProductsController@deleteCart');
 //Route For update Quantity
 Route::get('/cart/update-quantity/{id}/{quantity}','ProductsController@updateCartQuantity');
+//Apply Coupon Code
+Route::post('/cart/apply-coupon','ProductsController@applyCoupon');
+
 Auth::routes();
 Route::match(['get','post'],'admin','AdminController@login');
 

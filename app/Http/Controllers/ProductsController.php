@@ -8,6 +8,7 @@ use App\Products;
 use App\Category;
 use App\ProductAttributes;
 use App\ProductsImages;
+use App\Coupons;
 use App\ProductsAttributes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -240,6 +241,8 @@ public function getprice(Request $request){
    echo $proAttr->price;
 }
 public function AddtoCart(Request $request){
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
     $data = $request->all();
     // echo"<pre>";print_r($data);die;
 
@@ -278,13 +281,59 @@ public function Cart(Request $request){
     return view('Ebharatbazar.products.cart')->with(compact('userCart'));
 }
 public function deleteCart($id=null){
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
     DB::table('cart')->where('id',$id)->delete();
     Alert::success('Deleted','Success Message');
         return redirect('/Cart')->with('flash_message_error','Product has been deleted!');
 }
 
 public function updateCartQuantity($id=null,$quantity=null){
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
     DB::table('cart')->where('id',$id)->increment('quantity',$quantity);
     return redirect('/Cart')->with('flash_message_success','Product Quantity has been updated Successfully');
 }
+public function applyCoupon(Request $request){
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
+    if($request->isMethod('post')){
+        $data = $request->all();
+            //  echo "<pre>";print_r($data);die;
+            $couponCount = Coupons::where('coupon_code',$data['coupon_code'])->count();
+            if($couponCount == 0){
+                return redirect()->back()->with('flash_message_error','Coupon code does not exists');
+            }else{
+                $couponDetails = Coupons::where('coupon_code',$data['coupon_code'])->first();
+                //Coupon code status
+                if($couponDetails->status==0){
+                    return redirect()->back()->with('flash_message_error','Coupon code is not active');
+                }
+                //Check coupon expiry date
+                $expiry_date = $couponDetails->expiry_date;
+                $current_date = date('Y-m-d');
+                if($expiry_date < $current_date){
+                    return redirect()->back()->with('flash_message_error','Coupon Code is Expired');
+                }
+                $session_id = Session::get('session_id');
+                $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
+                $total_amount = 0;
+                foreach($userCart as $item){
+                    $total_amount = $total_amount + ($item->price*$item->quantity);
+                }
+                //Check if coupon amount is fixed or percentage
+                if($couponDetails->amount_type=="fixed"){
+                    $couponAmount = $couponDetails->amount;
+                }else{
+                    $couponAmount = $total_amount * ($couponDetails->amount/100);
+                    // echo $coupon;die;
+                }
+                Session::put('CouponAmount',$couponAmount);
+                Session::put('CouponCode',$data['coupon_code']);
+                return redirect()->back()->with('flash_message_success','Coupon Code is Successffully Applied.You are Availing Discount');
+            }
+    }
+
+}
+
 }

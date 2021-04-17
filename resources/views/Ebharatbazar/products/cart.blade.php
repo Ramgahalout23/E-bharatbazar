@@ -50,7 +50,7 @@
                                     <p>{{$cart->product_code}} | {{$cart->size}}</p>
                                     </td>
                                     <td class="price-pr">
-                                        <p>Rs. {{$cart->price}}</p>
+                                        <p>Rs.{{$cart->price}}</p>
                                     </td>
                                 <td class="quantity-box">
                                 <a href="{{url('/cart/update-quantity/'.$cart->id.'/1')}}"  style="font-size:25px;">+</a>
@@ -95,24 +95,39 @@
                         @if(!empty(Session::get('CouponAmount')))
                         <div class="d-flex">
                             <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> PKR <?php echo $total_amount; ?> </div>
+                            <div class="ml-auto font-weight-bold"> Rs. <?php echo $total_amount; ?> </div>
                         </div>
                         <hr class="my-1">
                         <div class="d-flex">
                             <h4>Coupon Discount</h4>
-                            <div class="ml-auto font-weight-bold"> PKR <?php echo Session::get('CouponAmount'); ?> </div>
+                            <div class="ml-auto font-weight-bold"> Rs. <?php echo Session::get('CouponAmount'); ?> </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex">
+                            <h4>Shipping Cost</h4>
+                            <div class="ml-auto font-weight-bold"> 100 </div>
                         </div>
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> PKR  <?php echo $total_amount - Session::get('CouponAmount'); ?> </div>
+                            <div class="ml-auto h5"> Rs.  <?php echo $total_amount - Session::get('CouponAmount'); ?> </div>
                         </div>
                         <hr>
                         @else
+                        
+                        @if($total_amount)
+                        <div class="d-flex">
+                            <h4>Shipping Cost</h4>
+                            <div class="ml-auto font-weight-bold"> 100 </div>
+                        </div>
+                        @endif
+                        <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> RS.  <?php echo $total_amount; ?> </div>
+                            @if($total_amount)
+                            <div class="ml-auto h5"> Rs. <?php echo $total_amount +100; ?> </div>
                         </div>
+                        @endif
                         @endif
                       
                     </div>
@@ -125,5 +140,4 @@
         </div>
     </div>
     <!-- End Cart -->
-
 @endsection

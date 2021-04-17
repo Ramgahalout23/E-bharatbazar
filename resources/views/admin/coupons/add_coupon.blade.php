@@ -58,7 +58,7 @@
                             <label>Amount Type</label>
                             <select name="amount_type" id="amount_type" class="form-control" required>
                             <option value="Percentage" >Percentage</option>
-                            <option value="fixed" >Fixed</option>
+                            <option value="Fixed" >Fixed</option>
                             </select>
                          </div>
                           <div class="form-group">
