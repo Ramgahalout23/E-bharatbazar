@@ -79,3 +79,18 @@ Route::match(['get','post'],'/admin/edit-coupon/{id}','CouponsController@editCou
 Route::get('/admin/delete-coupon/{id}','CouponsController@deleteCoupon');
 Route::post('/admin/update-coupon-status','CouponsController@updateStatus');
 Route::get('logout',[AdminController::class,'logout']);
+
+//Route for login-register
+Route::get('/login-register','UsersController@userLoginRegister');
+//Route for add users registration
+Route::post('/user-register','UsersController@register');
+//Route for login-User
+Route::post('/user-login','UsersController@login');
+//Route for add users registration
+Route::get('/user-logout','UsersController@logout');
+
+//Route for middleware after front login
+Route::group(['middleware' => ['frontlogin']],function(){
+//Route for users account
+Route::match(['get','post'],'/account','UsersController@account');
+});
