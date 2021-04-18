@@ -47,6 +47,8 @@
   <script src="{{ asset('front_assets/js/jquery-3.2.1.min.js') }}"></script>
   <script src="{{ asset('front_assets/js/popper.min.js') }}"></script>
   <script src="{{ asset('front_assets/js/bootstrap.min.js') }}"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <!-- ALL PLUGINS -->
   <script src="{{ asset('front_assets/js/jquery.superslides.min.js')}}"></script>
   <script src="{{ asset('front_assets/js/bootstrap-select.js')}}"></script>
@@ -85,6 +87,14 @@
         });
       });
     });
+
+    function sort_price_filter(){
+  $start=jQuery('#filter_price_start').val(jQuery('#skip-value-lower').html());
+  $end =jQuery('#filter_price_end').val(jQuery('#skip-value-upper').html());
+  alert($start +'--'+$end);
+  // jQuery('#categoryFilter').submit();
+  
+}
   </script>
 </body>
 

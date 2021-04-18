@@ -253,9 +253,7 @@ public function AddtoCart(Request $request){
     //     $data['session_id']=' ';
     // }
     $sizeArr = explode('-',$data['size']);
-    if(empty($sizeArr)){
-        $data['size']=' ';
-    }
+
     $session_id = Session::get('session_id');
         if(empty($session_id)){
         $session_id = Str::random(40);

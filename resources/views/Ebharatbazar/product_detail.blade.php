@@ -80,7 +80,7 @@
                                     <li>
                                         <div class="form-group size-st">
                                             <label class="size-label">Size</label>
-                                            <select id="selSize" name="size" class="selectpicker show-tick form-control">
+                                            <select id="selSize" name="size" class="selectpicker show-tick form-control" required>
                                     <option value="0">Size</option>
                                     @foreach ($productDetails->attributes as $size)
                                     <option value="{{$productDetails->id}}-{{$size->size}}">{{$size->size}}</option>
