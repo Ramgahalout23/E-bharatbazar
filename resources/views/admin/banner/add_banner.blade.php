@@ -39,7 +39,7 @@
                  <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                        <div class="btn-group" id="buttonlist">
-                          <a class="btn btn-add " href="{{url('/admin/view-product')}}">
+                          <a class="btn btn-add " href="{{url('/admin/banners')}}">
                           <i class="fa fa-eye"></i>  View Banners </a>
                        </div>
                     </div>
