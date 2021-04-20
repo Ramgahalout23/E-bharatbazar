@@ -9,7 +9,11 @@ use App\Category;
 use App\ProductAttributes;
 use App\ProductsImages;
 use App\Coupons;
+use App\User;
+use App\Country;
+use App\DeliveryAddress;
 use App\ProductsAttributes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -333,5 +337,47 @@ public function applyCoupon(Request $request){
     }
 
 }
+
+ public function checkout(Request $request){
+    $user_id = Auth::user()->id;
+    $user_email = Auth::user()->email;
+    $shippingDetails = DeliveryAddress::where('user_id',$user_id)->first();
+    $userDetails = User::find($user_id);
+    $countries = Country::get();
+    //check if shipping address exists
+    $shippingCount = DeliveryAddress::where('user_id',$user_id)->count();
+        $shippingDetails = array();
+        if($shippingCount > 0){
+            $shippingDetails = DeliveryAddress::where('user_id',$user_id)->first();
+        }
+    if($request->isMethod('post')){
+        $data = $request->all();
+    //   echo "<pre>";print_r($data);die;
+//Update Users Details 
+         User::where('id',$user_id)->update(['name'=>$data['billing_name'],'address'=>$data['billing_address'],
+         'city'=>$data['billing_city'],'state'=>$data['billing_state'],'pincode'=>$data['billing_pincode'],
+         'country'=>$data['billing_country'],'mobile'=>$data['billing_mobile']]);
+
+         if($shippingCount > 0){
+             DeliveryAddress::where('user_id',$user_id)->update(['name'=>$data['shipping_name'],'address'=>$data['shipping_address'],'city'=>$data['shipping_city'],'state'=>$data['shipping_state'],'country'=>$data['shipping_country'],'pincode'=>$data['shipping_pincode'],'mobile'=>$data['shipping_mobile']]);
+         }
+         else{
+            $shipping = new DeliveryAddress;
+            $shipping->user_id = $user_id;
+            $shipping->user_email = $user_email;
+            $shipping->name = $data['shipping_name'];
+            $shipping->address = $data['shipping_address'];
+            $shipping->city = $data['shipping_city'];
+            $shipping->state= $data['shipping_state'];
+            $shipping->country =$data['shipping_country'];
+            $shipping->pincode =$data['shipping_pincode'];
+            $shipping->mobile = $data['shipping_mobile'];
+             $shipping->save();
+         }
+         return redirect()->action('ProductsController@orderReview');
+    }
+
+    return view('Ebharatbazar.products.checkout')->with(compact('userDetails','countries','shippingDetails'));
+ }
 
 }

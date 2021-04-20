@@ -62,39 +62,48 @@
   <script src="{{ asset('front_assets/js/contact-form-script.js')}}"></script>
   <script src="{{ asset('front_assets/js/custom.js')}}"></script>
   <script>
-    $(document).ready(function() {
-      $("#selSize").change(function() {
-        //   alert("test");
-        var idSize = $(this).val();
-        if (idSize == "") {
-          return false;
-        }
-        $.ajax({
-          type: 'get',
-          url: '/get-product-price',
-          data: {
-            idSize: idSize
-          },
-          success: function(resp) {
+$(document).ready(function(){
+      $("#selSize").change(function(){
+    //   alert("test");
+       var idSize = $(this).val();
+       if(idSize==""){
+           return false;
+       }
+       $.ajax({
+           type : 'get',
+           url : '/get-product-price',
+           data : {idSize:idSize},
+           success:function(resp){
             //    alert(resp);
-            var arr = resp.split('#');
-            $("#getPrice").html("Product Price : RS " + arr[0]);
+            var arr= resp.split('#');
+            $("#getPrice").html("Product Price : Rs. "+arr[0]);
             $('#price').val(arr[0]);
-          },
-          error: function() {
-            alert("Error");
-          }
-        });
+           },error:function(){
+               alert("Error");
+           }
+       });
       });
-    });
+    $("#billtoship").click(function(){
+      if(this.checked){
+        $("#shipping_name").val($("#billing_name").val());
+        $("#shipping_address").val($("#billing_address").val());
+        $("#shipping_city").val($("#billing_city").val());
+        $("#shipping_state").val($("#billing_state").val());
+        $("#shipping_country").val($("#billing_country").val());
+        $("#shipping_pincode").val($("#billing_pincode").val());
+        $("#shipping_mobile").val($("#billing_mobile").val());
+      }else{
+        $("#shipping_name").val('');
+        $("#shipping_address").val('');
+        $("#shipping_city").val('');
+        $("#shipping_state").val('');
+        $("#shipping_country").val('');
+        $("#shipping_pincode").val('');
+        $("#shipping_mobile").val('');
+      }
 
-    function sort_price_filter(){
-  $start=jQuery('#filter_price_start').val(jQuery('#skip-value-lower').html());
-  $end =jQuery('#filter_price_end').val(jQuery('#skip-value-upper').html());
-  alert($start +'--'+$end);
-  // jQuery('#categoryFilter').submit();
-  
-}
+    });
+    });
   </script>
 </body>
 
