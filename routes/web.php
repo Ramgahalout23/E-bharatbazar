@@ -29,14 +29,15 @@ Route::get('/productscategories/{category_id}', [IndexController::class, 'catego
 Route::get('/get-product-price','ProductsController@getprice');
 // Routes for add to Cart
 Route::match(['get','post'],'/addtoCart','ProductsController@addtoCart');
-Route::match(['get','post'],'/Cart','ProductsController@Cart');
+Route::match(['get','post'],'/Cart','ProductsController@Cart')->middleware('verified');
 Route::match(['get','post'],'/cart/delete-product/{id}','ProductsController@deleteCart');
 //Route For update Quantity
 Route::get('/cart/update-quantity/{id}/{quantity}','ProductsController@updateCartQuantity');
 //Apply Coupon Code
 Route::post('/cart/apply-coupon','ProductsController@applyCoupon');
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
+
 Route::match(['get','post'],'admin','AdminController@login');
 
 // Category Route
