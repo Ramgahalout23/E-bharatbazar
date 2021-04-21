@@ -54,7 +54,7 @@ class UsersController extends Controller
             Session::put('frontSession',$data['email']);
             if(!empty(Session::get('session_id'))){
                 $session_id = Session::get('session_id');
-                DB::table('cart'->where('session_id',$session_id))->update(['email'=>$data['email']]);
+                DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
             }
             return redirect('/');
          }else{
@@ -64,6 +64,7 @@ class UsersController extends Controller
     }
     public function logout(){
         Session::forget('frontSession');
+        Session::forget('session_id');
         Auth::logout();
         return redirect('/');
     }

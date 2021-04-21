@@ -248,7 +248,7 @@ public function AddtoCart(Request $request){
     Session::forget('CouponAmount');
     Session::forget('CouponCode');
     $data = $request->all();
-    // echo"<pre>";print_r($data);die;
+    //  echo"<pre>";print_r($data);die;
 
     if(empty($data['user_email'])){
         $data['user_email']=' ';
@@ -257,7 +257,7 @@ public function AddtoCart(Request $request){
     //     $data['session_id']=' ';
     // }
     $sizeArr = explode('-',$data['size']);
-
+    $email_id = Session::get('frontSession');
     $session_id = Session::get('session_id');
         if(empty($session_id)){
         $session_id = Str::random(40);
@@ -271,13 +271,14 @@ public function AddtoCart(Request $request){
     DB::table('cart')->insert(['product_id'=>$data['product_id']
     ,'product_name'=>$data['product_name'],'product_image'=>$data['image'],'product_color'=>$data['color']
     ,'product_code'=>$data['product_code'],'product_color'=>$data['color'],'price'=>$data['price'],
-    'size'=>$sizeArr[1],'quantity'=>$data['quantity'],'user_email'=>$data['user_email'],
+    'size'=>$sizeArr[1],'quantity'=>$data['quantity'],'user_email'=>$email_id,
     'session_id'=>$session_id]);
     return redirect('/Cart')->with('flash_message_success','Product has been added in cart');
 }}
 public function Cart(Request $request){
+        $email_id = Session::get('frontSession');
         $session_id = Session::get('session_id');
-        $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
+        $userCart = DB::table('cart')->where(['user_email'=>$email_id])->get();
     // echo "<pre>";print_r($userCart);die;
     
     return view('Ebharatbazar.products.cart')->with(compact('userCart'));

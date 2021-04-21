@@ -1,73 +1,102 @@
-@extends('layouts.app')
-
+@extends('Ebharatbazar.layouts.master')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="contact-box-main">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        @if(Session::has('flash_message_error'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    <strong>{{ session('flash_message_error') }}</strong>
     </div>
+    @endif
+    @if(Session::has('flash_message_success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    <strong>{{ session('flash_message_success') }}</strong>
+    </div>
+    @endif
+     <div class="row">
+         <div class="col-lg-5 col-sm-12">
+             <div class="contact-form-right">
+                 <h2>New User SignUp !</h2>
+                 <form action="{{url('/user-register')}}" method="POST" id="contactForm registerForm"> {{csrf_field()}}
+                     <div class="row">
+                         <div class="col-md-12">
+                             <div class="form-group">
+                                 <input type="text" class="form-control" placeholder="Your Name" id="name" name="name" required data-error="Please Enter Your Name">
+                                 <div class="help-block with-errors"></div>
+                             </div>
+
+                         </div>
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Email" id="email" name="email" required data-error="Please Enter Your Email">
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" id="password" name="password" required data-error="Please Enter Your Password">
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="submit-button text-center">
+                                <button class="btn hvr-hover" id="submit" type="submit">Signup</button>
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                     </div>
+                 </form>
+             </div>
+
+         </div>
+         <div class="col-lg-1 col-sm-12" id="or">
+          OR
+         </div>
+         <div class="col-lg-6 col-sm-12">
+            <div class="contact-form-right">
+                <h2>Already a Member ? Just SignIn !</h2>
+                <form action="{{url('/user-login')}}" method="post" id="contactForm LoginForm"> {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group">
+                               <input type="text" class="form-control" placeholder="Your Email" id="email" name="email" required data-error="Please Enter Your Email">
+                               <div class="help-block with-errors"></div>
+                           </div>
+
+                       </div>
+                       <div class="col-md-12">
+                           <div class="form-group">
+                               <input type="password" class="form-control" placeholder="Password" id="password" name="password" required data-error="Please Enter Your Password">
+                               <div class="help-block with-errors"></div>
+                           </div>
+
+                       </div>
+                       <div class="col-md-12">
+                           <div class="submit-button text-center">
+                               <button class="btn hvr-hover" id="submit" type="submit">Login</button>
+                               <div id="msgSubmit" class="h3 text-center hidden"></div>
+                               <div class="clearfix"></div>
+                           </div>
+
+                       </div>
+                    </div>
+                </form>
+            </div>
+         </div>
+     </div>
+    </div>
+
 </div>
+
 @endsection
