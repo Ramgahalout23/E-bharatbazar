@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->length(255)->nullable();
             $table->string('state')->length(100)->nullable();
             $table->string('city')->length(100)->nullable();
-            $table->string('Country')->length(100)->nullable();
+            $table->string('country')->length(100)->nullable();
             $table->string('pincode')->length(100)->nullable();
             $table->string('mobile')->length(100)->nullable();
             $table->timestamp('email_verified_at')->nullable();

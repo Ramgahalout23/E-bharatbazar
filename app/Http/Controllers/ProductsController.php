@@ -389,6 +389,7 @@ public function applyCoupon(Request $request){
     $user_id = Auth::user()->id;
     $user_email = Auth::user()->email;
     $shippingDetails = DeliveryAddress::where('user_id',$user_id)->first();
+    //    echo "<pre>";print_r($shippingDetails);die;
     $userDetails = User::find($user_id);
     $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
     foreach($userCart as $key=>$product){
