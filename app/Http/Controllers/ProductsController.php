@@ -469,8 +469,20 @@ class ProductsController extends Controller
                 $cartPro->product_price = $pro->price;
                 $cartPro->product_qty = $pro->quantity;
                 $cartPro->save();
-
+                Session::put('order_id',$order_id);
+                Session::put('grand_total',$data['grand_total']);
+                if($data['payment_method']=="cod"){
+                    return redirect('/thanks');
+                }else{
+                    return redirect('/stripe');
+                }
             }
         }
+    }
+    
+    public function thanks(){
+        $user_email = Auth::user()->email;
+        DB::table('cart')->where('user_email',$user_email)->delete();
+        return view('Ebharatbazar.orders.thanks');
     }
 }
