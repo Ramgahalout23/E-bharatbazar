@@ -485,4 +485,19 @@ class ProductsController extends Controller
         DB::table('cart')->where('user_email',$user_email)->delete();
         return view('Ebharatbazar.orders.thanks');
     }
+
+    public function userOrders(){
+        $user_id = Auth::user()->id;
+        $orders = Orders::with('orders')->where('user_id',$user_id)->orderBy('id','DESC')->get();
+
+        // echo "<pre>";print_r($orders);die;
+        return view('Ebharatbazar.orders.user_orders')->with(compact('orders'));
+    }
+
+    public function userOrderDetails($order_id){
+        $orderDetails = Orders::with('orders')->where('id',$order_id)->first();
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        return view('Ebharatbazar.orders.user_order_details')->with(compact('orderDetails','userDetails'));
+    }
 }
