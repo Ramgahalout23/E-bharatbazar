@@ -104,6 +104,15 @@ $(document).ready(function(){
 
     });
     });
+
+    function selectPaymentMethod(){
+      if($('.stripe').is(':checked') || $('.cod').is(':checked')){
+        //alert('checked');
+      }else{  
+        alert('Please Select Payment Method');
+        return false;
+      }
+    }
   </script>
 </body>
 

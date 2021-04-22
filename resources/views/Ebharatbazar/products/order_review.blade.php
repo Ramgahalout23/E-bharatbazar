@@ -201,7 +201,7 @@
                 </div>
                 <div class="custom-control custom-radio">
                     <input id="debit" name="payment_method" value="paypal" type="radio" class="custom-control-input stripe" >
-                    <label class="custom-control-label" for="debit">Stripe</label>
+                    <label class="custom-control-label" for="debit">Paypal</label>
                 </div>
                 <div class="col-12 d-flex shopping-box">
                     <button  type="submit" class="ml-auto btn hvr-hover" onclick="return selectPaymentMethod();" style="color:white;">Place Order</button> 
