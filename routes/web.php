@@ -97,4 +97,5 @@ Route::match(['get','post'],'/account','UsersController@account');
 Route::match(['get','post'],'/change-password','UsersController@changePassword');
 Route::match(['get','post'],'/change-address','UsersController@changeAddress');
 Route::match(['get','post'],'/checkout','ProductsController@checkout');
+Route::match(['get','post'],'/order-review','ProductsController@orderReview');
 });

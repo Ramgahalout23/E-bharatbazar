@@ -250,15 +250,16 @@ public function AddtoCart(Request $request){
     $data = $request->all();
     //  echo"<pre>";print_r($data);die;
 
-    if(empty($data['user_email'])){
-        $data['user_email']=' ';
-    }
+ 
     // if(empty($data['session_id'])){
     //     $data['session_id']=' ';
     // }
     $sizeArr = explode('-',$data['size']);
     $email_id = Session::get('frontSession');
     $session_id = Session::get('session_id');
+    if(empty($email_id)){
+        $email_id =' ';
+    }
         if(empty($session_id)){
         $session_id = Str::random(40);
         Session::put('session_id',$session_id);
@@ -276,9 +277,13 @@ public function AddtoCart(Request $request){
     return redirect('/Cart')->with('flash_message_success','Product has been added in cart');
 }}
 public function Cart(Request $request){
-        $email_id = Session::get('frontSession');
+    if(Auth::check()){
+        $user_email = Auth::user()->email;
+        $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
+    }else{
         $session_id = Session::get('session_id');
-        $userCart = DB::table('cart')->where(['user_email'=>$email_id])->get();
+        $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
+    }
     // echo "<pre>";print_r($userCart);die;
     
     return view('Ebharatbazar.products.cart')->with(compact('userCart'));
@@ -325,7 +330,7 @@ public function applyCoupon(Request $request){
                     $total_amount = $total_amount + ($item->price*$item->quantity);
                 }
                 //Check if coupon amount is fixed or percentage
-                if($couponDetails->amount_type=="fixed"){
+                if($couponDetails->amount_type=="Fixed"){
                     $couponAmount = $couponDetails->amount;
                 }else{
                     $couponAmount = $total_amount * ($couponDetails->amount/100);
@@ -379,6 +384,18 @@ public function applyCoupon(Request $request){
     }
 
     return view('Ebharatbazar.products.checkout')->with(compact('userDetails','countries','shippingDetails'));
- }
+ }    
+ public function orderReview(){
+    $user_id = Auth::user()->id;
+    $user_email = Auth::user()->email;
+    $shippingDetails = DeliveryAddress::where('user_id',$user_id)->first();
+    $userDetails = User::find($user_id);
+    $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
+    foreach($userCart as $key=>$product){
+        $productDetails = Products::where('id',$product->product_id)->first();
+        $userCart[$key]->image = $productDetails->image;
+    }
+    return view('Ebharatbazar.products.order_review')->with(compact('userDetails','shippingDetails','userCart'));
+}
 
 }
