@@ -103,3 +103,8 @@ Route::get('/thanks','ProductsController@thanks');
 Route::get('/orders','ProductsController@userOrders');
 Route::get('/orders/{id}','ProductsController@userOrderDetails');
 });
+
+
+// Admin Orders Routes
+Route::get('/admin/orders','ProductsController@viewOrders');
+Route::get('/admin/orders/{id}','ProductsController@viewOrderDetails');

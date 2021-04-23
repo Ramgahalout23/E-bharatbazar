@@ -500,4 +500,15 @@ class ProductsController extends Controller
         $userDetails = User::where('id',$user_id)->first();
         return view('Ebharatbazar.orders.user_order_details')->with(compact('orderDetails','userDetails'));
     }
+    public function viewOrders(){
+        $orders = Orders::with('orders')->orderBy('id','DESC')->get();
+        return view('admin.orders.view_orders')->with(compact('orders'));
+    }
+    public function viewOrderDetails($order_id){
+        $orderDetails = Orders::with('orders')->where('id',$order_id)->first();
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        return view('admin.orders.order_details')->with(compact('orderDetails','userDetails'));
+    }
+    
 }
