@@ -510,5 +510,27 @@ class ProductsController extends Controller
         $userDetails = User::where('id',$user_id)->first();
         return view('admin.orders.order_details')->with(compact('orderDetails','userDetails'));
     }
-    
+    public function stripe(Request $request){
+        $user_email = Auth::user()->email;
+        DB::table('cart')->where('user_email',$user_email)->delete();
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>";print_r($data);die;
+            // Set your secret key. Remember to switch to your live secret key in production!
+            // See your keys here: https://dashboard.stripe.com/account/apikeys
+            \Stripe\Stripe::setApiKey('sk_test_51IjXt3SAeEiYCokodBUVPId3njr04mQ2prYWtbd5Y9bVhwJoXXvWU5Z3KduroNRFZcv6kQy0dTh3uZpkq7D067UG00zhLtB20n');
+
+            $token = $_POST['stripeToken'];
+            $charge = \Stripe\charge::Create([
+                
+              'amount' => $request->input('total_amount')*100,
+              'currency' => 'INR',
+              'description' => $request->input('    '), 
+              'source' => $token,
+            ]);
+         //dd($charge);
+            return redirect()->back()->with('flash_message_success','Your Payment Successfully Done!');
+        }
+        return view('Ebharatbazar.orders.stripe');
+    }
 }

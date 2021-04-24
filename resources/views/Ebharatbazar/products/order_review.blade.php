@@ -200,8 +200,8 @@
                     <label class="custom-control-label" for="credit">Cash On Delivery</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input id="debit" name="payment_method" value="paypal" type="radio" class="custom-control-input stripe" >
-                    <label class="custom-control-label" for="debit">Paypal</label>
+                    <input id="debit" name="payment_method" value="stripe" type="radio" class="custom-control-input stripe" >
+                    <label class="custom-control-label" for="debit">Stripe</label>
                 </div>
                 <div class="col-12 d-flex shopping-box">
                     <button  type="submit" class="ml-auto btn hvr-hover" onclick="return selectPaymentMethod();" style="color:white;">Place Order</button> 
