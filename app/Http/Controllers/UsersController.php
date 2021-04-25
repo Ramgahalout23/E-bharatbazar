@@ -30,15 +30,17 @@ class UsersController extends Controller
              $user->email = $data['email'];
              $user->password = bcrypt($data['password']);
              $user->save();
-             //Registration  Email
+             //Confirm  Email
              $email = $data['email'];  
-             $messageData = ['email'=>$data['email'],'name'=>$data['name']];
-             Mail::send('Ebharatbazar.email.register',$messageData,function($message) use($email){
-               $message->to($email)->subject('Registration For E-Bharatbazar');
-             });
+             $messageData = ['email'=>$data['email'],'name'=>$data['name'],
+                'code'=>base64_encode($data['email'])];
+             Mail::send('Ebharatbazar.email.confirm',$messageData,function($message) use($email){
+               $message->to($email)->subject('Account Activation For For E-Bharatbazar');
+             });    
+             return redirect()->back()->with('flash_message_error','Please Confirm Your Email To Activate Your Account !');
              if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
                 Session::put('frontSession',$data['email']);
-                if(!empty(Session::get('session_id'))){
+                if(!empty(Session::get('session_id'))){                         
                     $session_id = Session::get('session_id');
                     DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
                 }
@@ -47,15 +49,39 @@ class UsersController extends Controller
         }
     }
     }
+    public function confirmAccount($email){
+        $email = base64_decode($email);
+        $userCount = User::where(['email'=>$email])->count();
+        if($userCount > 0){
+          $userDetails = User::where(['email'=>$email])->first();
+            if($userDetails->status == 1){
+                return redirect('login-register')->with('flash_message_error','Your Account is already activated. You can simply login now.');
+            }else{
+              User::where(['email'=>$email])->update(['status'=>1]);
+              //Send Welcome to Users
+                  $messageData = ['email'=>$email,'name'=>$userDetails->name];
+                  Mail::send('Ebharatbazar.email.welcome',$messageData,function($message) use($email){
+                    $message->to($email)->subject('Welcome To Wayshop Website');
+                  });
+              return redirect('login-register')->with('flash_message_success','Congrats! Your Account is now Activated');
+            }
+        }else{
+            abort(404);
+        }
+     }
     public function login(Request $request){
         if($request->isMethod('post')){
             $data = $request->all();
         //    echo "<pre>";print_r($data);die;
-         if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
+        if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
+            $userStatus = User::where(['email'=>$data['email']])->first();
+            if($userStatus->status == 0){
+                return redirect()->back()->with('flash_message_error','Your Account is not activated ! Please confirm your email to activate your account.');
+            }
             Session::put('frontSession',$data['email']);
             if(!empty(Session::get('session_id'))){
                 $session_id = Session::get('session_id');
-                DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
+                DB::table('cart')->where('session_id',$session_id)->update(['email'=>$data['email']]);
             }
             return redirect('/');
          }else{

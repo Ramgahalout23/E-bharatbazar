@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('country')->length(100)->nullable();
             $table->string('pincode')->length(100)->nullable();
             $table->string('mobile')->length(100)->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('admin')->length(255)->default(0);
+            $table->tinyInteger('status')->length(4)->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -87,6 +87,8 @@ Route::post('/user-register','UsersController@register');
 Route::post('/user-login','UsersController@login');
 //Route for add users registration
 Route::get('/user-logout','UsersController@logout');
+//Confirm Email
+Route::get('/confirm/{code}','UsersController@confirmAccount');
 
 //Route for middleware after front login
 Route::group(['middleware' => ['frontlogin']],function(){
