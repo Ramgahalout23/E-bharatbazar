@@ -29,25 +29,26 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->name)) value="{{$userDetails->name}}" @endif name="billing_name" id="billing_name" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->name)) value="{{$userDetails->name}}" @endif @if(empty($userDetails->name)) placeholder=" Name" @endif name="billing_name" id="billing_name" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->address)) value="{{$userDetails->address}}" @endif  name="billing_address" id="billing_address" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->address)) value="{{$userDetails->address}}" @endif @if(empty($userDetails->address)) placeholder=" Address" @endif  name="billing_address" id="billing_address" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->city)) value="{{$userDetails->city}}" @endif name="billing_city" id="billing_city" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->city)) value="{{$userDetails->city}}" @endif @if(empty($userDetails->city))
+                                    placeholder=" City"  @endif name="billing_city" id="billing_city" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->state)) value="{{$userDetails->state}}" @endif name="billing_state" id="billing_state" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->state)) value="{{$userDetails->state}}" @endif @if(empty($userDetails->state)) placeholder=" State" @endif name="billing_state" id="billing_state" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -63,13 +64,13 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->pincode)) value="{{$userDetails->pincode}}" @endif name="billing_pincode" id="billing_pincode" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->pincode)) value="{{$userDetails->pincode}}" @endif @if(empty($userDetails->pincode)) placeholder=" Pin Code" @endif name="billing_pincode" id="billing_pincode" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  @if(!empty($userDetails->mobile)) value="{{$userDetails->mobile}}" @endif name="billing_mobile" id="billing_mobile" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  @if(!empty($userDetails->mobile)) value="{{$userDetails->mobile}}" @endif @if(empty($userDetails->mobile))  placeholder="Mobile"@endif name="billing_mobile" id="billing_mobile" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -90,25 +91,25 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->name)) value="{{$shippingDetails->name}}" @endif name="shipping_name" id="shipping_name" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->name)) value="{{$shippingDetails->name}}" @endif  @if(empty($shippingDetails->name)) placeholder="Name" @endif name="shipping_name" id="shipping_name" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->address)) value="{{$shippingDetails->address}}" @endif name="shipping_address" id="shipping_address" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->address)) value="{{$shippingDetails->address}}" @endif @if(empty($shippingDetails->address)) placeholder="Address" @endif name="shipping_address" id="shipping_address" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->city)) value="{{$shippingDetails->city}}" @endif name="shipping_city" id="shipping_city" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->city)) value="{{$shippingDetails->city}}" @endif @if(empty($shippingDetails->city)) placeholder="City" @endif name="shipping_city" id="shipping_city" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->state)) value="{{$shippingDetails->state}}" @endif name="shipping_state" id="shipping_state" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->state)) value="{{$shippingDetails->state}}" @endif @if(empty($shippingDetails->state)) placeholder="State" @endif name="shipping_state" id="shipping_state" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -125,13 +126,13 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->pincode)) value="{{$shippingDetails->pincode}}" @endif name="shipping_pincode" id="shipping_pincode" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->pincode)) value="{{$shippingDetails->pincode}}" @endif @if(empty($shippingDetails->pincode)) placeholder="Pin Code" @endif name="shipping_pincode" id="shipping_pincode" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control"  @if(!empty($shippingDetails->mobile)) value="{{$shippingDetails->mobile}}" @endif name="shipping_mobile" id="shipping_mobile" required data-error="Please enter your name">
+                                <input type="text" class="form-control"  @if(!empty($shippingDetails->mobile)) value="{{$shippingDetails->mobile}}" @endif @if(empty($shippingDetails->mobile)) placeholder="Mobile" @endif name="shipping_mobile" id="shipping_mobile" required data-error="Please enter your name">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

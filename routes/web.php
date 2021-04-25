@@ -111,3 +111,8 @@ Route::get('/admin/orders','ProductsController@viewOrders');
 Route::get('/admin/orders/{id}','ProductsController@viewOrderDetails');
 //Update Order Status
 Route::post('/admin/update-order-status','ProductsController@updateOrderStatus');
+
+//Customers Route
+Route::get('/admin/customers','ProductsController@viewCustomers');
+Route::post('/admin/update-customer-status','ProductsController@updateCustomerStatus');
+Route::get('/admin/delete-customer/{id}','ProductsController@deleteCustomer');

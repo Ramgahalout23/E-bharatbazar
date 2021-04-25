@@ -15,6 +15,7 @@ use App\Country;
 use App\DeliveryAddress;
 use App\Orders;
 use App\OrdersProduct;
+use Illuminate\Support\Facades\mail;
 use App\ProductsAttributes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -421,6 +422,7 @@ class ProductsController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->all();
+            // echo "<pre>";print_r($data);die;
             $user_id = Auth::user()->id;
             $user_email = Auth::user()->email;
             $shippingDetails = DeliveryAddress::where(['user_email'=>$user_email])->first();
@@ -469,14 +471,32 @@ class ProductsController extends Controller
                 $cartPro->product_price = $pro->price;
                 $cartPro->product_qty = $pro->quantity;
                 $cartPro->save();
+            }
                 Session::put('order_id',$order_id);
                 Session::put('grand_total',$data['grand_total']);
                 if($data['payment_method']=="cod"){
+                    $orderDetails = Orders::with('orders')->where('id',$order_id)->first();
+                    $productDetails =json_decode(json_encode($orderDetails),true);
+                    $userDetails = User::where('id',$user_id)->first();
+                    $userstDetails =json_decode(json_encode($userDetails),true);
+                    //echo'<pre>';print_r($userstDetails);die;
+                    // Send Email To COD Order
+                    $email =$user_email;
+                    $messageData = [
+                        'email' => $email,
+                        'name' => $shippingDetails->name,
+                        'order' => $order_id,
+                        'productDetail'=>$productDetails,
+                        'userDetails'=>$userDetails,
+                    ];
+                    Mail::send('Ebharatbazar.email.cod',$messageData,function($message)use($email){
+                        $message->to($email)->subject('Your Ebharatbazar Order is Placed');
+                    });
                     return redirect('/thanks');
                 }else{
                     return redirect('/stripe');
                 }
-            }
+            
         }
     }
     
@@ -541,4 +561,18 @@ class ProductsController extends Controller
         }
         return view('Ebharatbazar.orders.stripe');
     }
+    public function viewCustomers(){
+        $userDetails =  User::get();
+        return view('admin.users.customer')->with(compact('userDetails'));
+    }
+    public function updateCustomerStatus(Request $request,$id=null){
+        $data = $request->all();
+        User::where('id',$data['id'])->update(['status'=>$data['status']]);
+    }
+    public function deleteCustomer($id=null){
+        User::where(['id'=>$id])->delete();
+        Alert::success('Deleted Successfully', 'Success');
+        return redirect()->back();
+    }
+
 }
