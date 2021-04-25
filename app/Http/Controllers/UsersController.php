@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 Use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\mail;
+use App\Mail\FirstEmail;
 class UsersController extends Controller
 {
     public function userLoginRegister(){
@@ -28,18 +30,17 @@ class UsersController extends Controller
              $user->email = $data['email'];
              $user->password = bcrypt($data['password']);
              $user->save();
+             //Registration  Email
+             $email = $data['email'];  
+             $messageData = ['email'=>$data['email'],'name'=>$data['name']];
+             Mail::send('Ebharatbazar.email.register',$messageData,function($message) use($email){
+               $message->to($email)->subject('Registration For E-Bharatbazar');
+             });
              if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
                 Session::put('frontSession',$data['email']);
                 if(!empty(Session::get('session_id'))){
                     $session_id = Session::get('session_id');
                     DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
-                }
-                if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
-                    Session::put('frontSession',$data['email']);
-                    if(!empty(Session::get('session_id'))){
-                        $session_id = Session::get('session_id');
-                        DB::table('cart')->where('session_id',$session_id)->update(['user_email'=>$data['email']]);
-                    }
                 }
                 return redirect('/Cart');
         }   

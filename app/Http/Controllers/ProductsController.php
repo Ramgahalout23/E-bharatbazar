@@ -510,6 +510,14 @@ class ProductsController extends Controller
         $userDetails = User::where('id',$user_id)->first();
         return view('admin.orders.order_details')->with(compact('orderDetails','userDetails'));
     }
+    public function updateOrderStatus(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+
+        }
+        Orders::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
+        return redirect()->back()->with('flash_message_success','Order Status has been updated successfully!');
+    }
     public function stripe(Request $request){
         $user_email = Auth::user()->email;
         DB::table('cart')->where('user_email',$user_email)->delete();

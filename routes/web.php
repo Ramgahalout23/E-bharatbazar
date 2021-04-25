@@ -24,19 +24,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [indexController::class, 'index']);
 Route::get('/home', [indexController::class, 'index'])->name('home');
 Route::get('/products/{id}', [ProductsController::class, 'productDetail']);
-Route::get('/productscategories/{category_id}', [IndexController::class, 'categories'
-]);
+Route::get('/productscategories/{category_id}', [IndexController::class, 'categories']);
 Route::get('/get-product-price','ProductsController@getprice');
 // Routes for add to Cart
 Route::match(['get','post'],'/addtoCart','ProductsController@addtoCart');
-Route::match(['get','post'],'/Cart','ProductsController@Cart')->middleware('verified');
+Route::match(['get','post'],'/Cart','ProductsController@Cart');
 Route::match(['get','post'],'/cart/delete-product/{id}','ProductsController@deleteCart');
 //Route For update Quantity
 Route::get('/cart/update-quantity/{id}/{quantity}','ProductsController@updateCartQuantity');
 //Apply Coupon Code
 Route::post('/cart/apply-coupon','ProductsController@applyCoupon');
-
-Auth::routes(['verify'=>true]);
 
 Route::match(['get','post'],'admin','AdminController@login');
 
@@ -49,8 +46,9 @@ Route::post('/admin/update-category-status','CategoryController@updateStatus');
 
 
 // Products routes
-Route::group(['middleware'=>['auth']],function(){
+Route::group(['middleware'=>['AdminLogin']],function(){
     Route::match(['get','post'],'/admin/dashboard','AdminController@dashboard');
+    Route::match(['get','post'],'/admin/user-profile','AdminController@changePassword');
     Route::match(['get','post'],'/admin/add-product','ProductsController@addProduct');
     Route::match(['get','post'],'/admin/view-product','ProductsController@viewProducts');
     Route::match(['get','post'],'/admin/edit-product/{id}','ProductsController@editProducts');
@@ -109,3 +107,5 @@ Route::get('/orders/{id}','ProductsController@userOrderDetails');
 // Admin Orders Routes
 Route::get('/admin/orders','ProductsController@viewOrders');
 Route::get('/admin/orders/{id}','ProductsController@viewOrderDetails');
+//Update Order Status
+Route::post('/admin/update-order-status','ProductsController@updateOrderStatus');
