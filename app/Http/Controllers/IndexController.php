@@ -22,4 +22,7 @@ class IndexController extends Controller
         return view('Ebharatbazar.category')->with(compact('categories','products','product_name'));
 
     }
+    public function about(){
+        return view('Ebharatbazar.aboutus');
+    }
 }

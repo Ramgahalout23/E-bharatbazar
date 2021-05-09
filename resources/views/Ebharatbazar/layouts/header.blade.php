@@ -78,7 +78,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{url('#')}}">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/About-us')}}">About Us</a></li>
                         <li class="dropdown megamenu-fw">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Product</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">

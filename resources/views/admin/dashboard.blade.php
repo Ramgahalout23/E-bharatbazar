@@ -11,8 +11,8 @@
                   <i class="fa fa-dashboard"></i>
                </div>
                <div class="header-title">
-                  <h1>CRM Admin Dashboard</h1>
-                  <small>Very detailed & featured admin.</small>
+                  <h1>E-Bharatbazar Admin Dashboard</h1>
+                  <small> E-Bharatbazar Very detailed & featured admin Panel.</small>
                </div>
             </section>
             <!-- Main content -->
