@@ -117,4 +117,10 @@ Route::get('/admin/customers','ProductsController@viewCustomers');
 Route::post('/admin/update-customer-status','ProductsController@updateCustomerStatus');
 Route::get('/admin/delete-customer/{id}','ProductsController@deleteCustomer');
 
-Route::match(['get','post'],'/About-us','indexController@about'); 
+Route::get("/about-us", function(){
+    return view("Ebharatbazar.aboutus");
+ });
+Route::get("/contact-us", function(){
+    return view("Ebharatbazar.contactus");
+ });
+ 
