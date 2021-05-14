@@ -12,7 +12,7 @@
                </div>
                <div class="header-title">
                   <h1>E-Bharatbazar Admin Dashboard</h1>
-                  <small> E-Bharatbazar Very detailed & featured admin Panel.</small>
+                  <small> E-Bharatbazar detailed & featured admin Panel.</small>
                </div>
             </section>
             <!-- Main content -->
