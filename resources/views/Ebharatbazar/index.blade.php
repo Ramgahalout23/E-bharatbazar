@@ -257,7 +257,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <h1>latest blog</h1>
+                        <h1>Latest blog</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
                     </div>
                 </div>
@@ -266,7 +266,7 @@
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
-                            <img class="img-fluid" src={{ asset('front_assets/images/blog-img.jpg')}}  alt="" />
+                            <img class="img-fluid" src="{{ asset('front_assets/images/blog-img.jpg')}}"  alt="" />
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
@@ -284,7 +284,7 @@
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
-                            <img class="img-fluid" src={{ asset('front_assets/images/blog-img-01.jpg')}}  alt="" />
+                            <img class="img-fluid" src="{{ asset('front_assets/images/blog-img-01.jpg')}}"  alt="" />
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
@@ -302,7 +302,7 @@
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
-                            <img class="img-fluid" src={{ asset('front_assets/images/blog-img-02.jpg')}} alt="" />
+                            <img class="img-fluid" src="{{ asset('front_assets/images/blog-img-02.jpg')}}" alt="" />
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
